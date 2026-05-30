@@ -6,6 +6,7 @@ import ChapterTitle from '../../ui/ChapterTitle'
 import QuoteBlock from '../../ui/QuoteBlock'
 import NeonCard from '../../ui/NeonCard'
 import IllustrationChapter4 from '../../ui/illustrations/IllustrationChapter4'
+import ConceptImage from '../../ui/ConceptImage'
 
 gsap.registerPlugin(ScrollTrigger)
 const chapter = getChapterById('chapter4')
@@ -67,7 +68,12 @@ export default function Chapter4() {
             <div className="animate-in"><ChapterTitle {...chapter}/></div>
 
             <div className="animate-in">
-              <IllustrationChapter4 accent={chapter.accent} className="w-full max-w-sm mx-auto lg:mx-0"/>
+              <ConceptImage
+                src="/images/chapter4_concept.png"
+                fallback={<IllustrationChapter4 accent={chapter.accent} className="w-full max-w-sm mx-auto lg:mx-0"/>}
+                imgClass="chapter-img chapter4-img mx-auto lg:mx-0"
+                alt="Ranh giới người — máy đang tan biến"
+              />
               <p className="font-hand text-sm mt-2 opacity-40"
                  style={{ color: chapter.accent, transform: 'rotate(1.5deg)' }}>
                 Ranh giới người — máy đang tan biến?

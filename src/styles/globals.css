@@ -140,6 +140,29 @@
 .gsap-hidden { visibility: hidden; }
 .animate-in  { }   /* marker class for GSAP selectors */
 
+/* ─── Chapter concept images — duotone filter khớp accent ── */
+/* Đặt ảnh AI-generated (ink etching trên nền trắng) vào /images/,
+   class sẽ tự duotone hóa về màu accent của chương */
+.chapter-img {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 2px;
+  mix-blend-mode: multiply;   /* nền sáng: ảnh trắng sẽ trong suốt */
+  transition: opacity 0.4s ease;
+}
+/* Ch3 — navy #0d3d5c: grayscale → sepia → hue 175° */
+.chapter3-img {
+  filter: grayscale(1) contrast(1.15) sepia(1) saturate(4) hue-rotate(175deg) brightness(0.68);
+  opacity: 0.82;
+}
+/* Ch4 — deep purple #3d1f6b: grayscale → sepia → hue 230° */
+.chapter4-img {
+  filter: grayscale(1) contrast(1.15) sepia(1) saturate(3.5) hue-rotate(230deg) brightness(0.6);
+  opacity: 0.78;
+}
+.chapter-img:hover { opacity: 1; }
+
 /* ─── Crosshatch overlay per-section ── */
 .crosshatch-bg {
   background-image:
