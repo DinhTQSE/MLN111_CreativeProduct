@@ -5,7 +5,7 @@ export default function NeonCard({ children, className = '', accent, hoverable =
 
   return (
     <div
-      className={clsx('parchment-card', hoverable && 'cursor-default', className)}
+      className={clsx('parchment-card relative', hoverable && 'cursor-default', className)}
       style={{ borderColor }}
     >
       {/* Viền accent màu mỏng ở cạnh trái */}
