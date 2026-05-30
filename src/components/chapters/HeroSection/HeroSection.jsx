@@ -2,6 +2,76 @@ import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import HeroIllustration from '../../ui/illustrations/HeroIllustration'
 
+const LOOP_ITEMS = [
+  { text: 'Tha hóa', color: '#8b1a1a' },
+  { text: 'Mâu thuẫn', color: '#8b6000' },
+  { text: 'Giải phóng', color: '#2a6b2a' },
+  { text: 'Tha hóa mới', color: '#3d1f6b' },
+]
+
+function DialecticLoopBadge() {
+  const loopRef = useRef(null)
+  const arrowRef = useRef(null)
+
+  useEffect(() => {
+    const items = loopRef.current?.querySelectorAll('.loop-item')
+    if (!items?.length) return
+
+    gsap.to(items, {
+      opacity: 1,
+      y: 0,
+      stagger: 0.4,
+      duration: 0.6,
+      ease: 'power2.out',
+      repeat: -1,
+      repeatDelay: 3.5,
+      yoyo: false,
+      onRepeat: () => {
+        gsap.set(items, { opacity: 0, y: 8 })
+      },
+    })
+
+    gsap.from(arrowRef.current, {
+      rotate: -10,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    })
+  }, [])
+
+  return (
+    <div className="inline-flex flex-col items-start gap-1 py-3 px-4 border"
+         style={{ borderColor: 'rgba(28,14,6,0.12)', background: 'rgba(240,229,206,0.6)' }}>
+      <p className="font-type text-[8px] tracking-[0.25em] uppercase opacity-35 mb-1">
+        Vòng biện chứng lịch sử
+      </p>
+      <div ref={loopRef} className="flex flex-wrap items-center gap-1.5">
+        {LOOP_ITEMS.map((item, i) => (
+          <div key={i} className="flex items-center gap-1.5">
+            <span
+              className="loop-item font-type text-xs font-bold px-1.5 py-0.5"
+              style={{
+                color: item.color,
+                border: `1px solid ${item.color}40`,
+                background: `${item.color}10`,
+                opacity: 0,
+                transform: 'translateY(8px)',
+              }}
+            >
+              {item.text}
+            </span>
+            {i < LOOP_ITEMS.length - 1 && (
+              <span className="text-ink-lite opacity-25 text-[10px]">→</span>
+            )}
+          </div>
+        ))}
+        <span ref={arrowRef} className="text-ink-lite opacity-25 text-sm inline-block">↺</span>
+      </div>
+    </div>
+  )
+}
+
 export default function HeroSection({ accent }) {
   const heroRef  = useRef(null)
   const leftRef  = useRef(null)
@@ -41,13 +111,13 @@ export default function HeroSection({ accent }) {
 
           <div className="hi">
             <span className="ink-stamp" style={{ color: accent, borderColor: accent }}>
-              Triết học Mác – Lênin &nbsp;//&nbsp; Assignment 2025
+              Triết học Mác – Lênin &nbsp;//&nbsp; MLN111 &nbsp;//&nbsp; 2025
             </span>
           </div>
 
           <div className="hi">
             <h1 className="font-display font-black text-6xl md:text-7xl lg:text-8xl leading-none text-ink tracking-tight">
-              Mã nguồn
+              Vòng Lặp
             </h1>
             <h1
               className="font-display font-black italic text-6xl md:text-7xl lg:text-8xl leading-none"
@@ -70,9 +140,13 @@ export default function HeroSection({ accent }) {
             {' '}qua bốn thời kỳ lịch sử Việt Nam.
           </p>
 
+          <div className="hi">
+            <DialecticLoopBadge />
+          </div>
+
           <div className="hi font-type text-xs text-ink-lite space-y-1 tracking-wide opacity-60">
+            <p className="italic">"Mỗi lần con người tự do hơn, tại sao lại bị trói buộc theo cách mới?"</p>
             <p>1975 — 1986 — 2000 — 2020 — Nay</p>
-            <p>Cuộn trang để bắt đầu hành trình</p>
           </div>
 
           <button

@@ -71,7 +71,6 @@ export default function BreakthroughBurst({ containerRef }) {
       let alive = false
       particles.forEach(p => {
         if (p.life <= 0) return
-        alive = true
 
         p.x   += p.vx * dt
         p.y   += p.vy * dt
@@ -79,21 +78,24 @@ export default function BreakthroughBurst({ containerRef }) {
         p.vy  *= 0.965
         p.life -= p.decay
 
+        if (p.life <= 0) return  // guard after decrement — prevents negative radius
+        alive = true
+
+        const radius = Math.max(0.01, p.size * p.life)
+
         ctx.save()
         ctx.globalAlpha = p.life * p.life  // quadratic fade
 
         if (p.type === 'dot') {
-          /* Ink blot — cercle avec légère texture */
           ctx.fillStyle   = p.color
           ctx.shadowColor = p.color
           ctx.shadowBlur  = p.size * 2
           ctx.beginPath()
-          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2)
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2)
           ctx.fill()
         } else {
-          /* Stroke bút — đường ngắn */
           ctx.strokeStyle = p.color
-          ctx.lineWidth   = p.size * p.life
+          ctx.lineWidth   = Math.max(0.01, p.size * p.life)
           ctx.lineCap     = 'round'
           ctx.shadowColor = p.color
           ctx.shadowBlur  = 4
