@@ -90,6 +90,13 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'THA_HOA',
+      alienationDimensions: [
+        'Tha hóa khỏi quá trình lao động',
+        'Tha hóa khỏi bản chất loài (Species-being)',
+        'Tha hóa khỏi sản phẩm lao động',
+      ],
+      alienationExplanation: 'Cơ chế bình quân chủ nghĩa triệt tiêu quan hệ giữa nỗ lực cá nhân và phần thưởng, biến lao động thành nghĩa vụ cưỡng bức không tự nguyện (chiều 2). Khi lao động chỉ là phương tiện nhận tem phiếu chứ không phải hoạt động sáng tạo có mục đích, "bản chất loài" của con người bị thủ tiêu (chiều 3). Sản phẩm làm ra không thuộc về người tạo ra — nhà nước phân phối lại theo bình quân, người lao động không nhận ra bản thân trong kết quả lao động của mình (chiều 1).',
+      llsxConflict: 'LLSX (người lao động với kỹ năng và động lực cá nhân) muốn phát triển và được ghi nhận theo đóng góp thực tế, nhưng QHSX kế hoạch hóa tập trung-bình quân kìm hãm mọi sự khác biệt năng suất, tạo mâu thuẫn tích lũy suốt 10 năm đến điểm nút Đổi Mới 1986.',
       marxistConcept: 'Tha hóa lao động (Entfremdung der Arbeit) — Marx, Bản thảo Kinh tế-Triết học 1844',
       textbookReference: 'Giáo trình Triết học Mác-Lênin, Bộ GD&ĐT 2021, tr.457–464',
       dialecticalLaw: 'Quan hệ sản xuất phải phù hợp với trình độ phát triển của lực lượng sản xuất (tr.287–329)',
@@ -130,6 +137,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'BOTH',
+      alienationDimensions: [
+        'Tha hóa khỏi bản chất loài (Species-being)',
+        'Tha hóa khỏi đồng loại',
+      ],
+      alienationExplanation: 'Môi trường bình quân kiến tạo tâm lý "không được nổi bật" — đây là tha hóa khỏi bản chất sáng tạo của con người (chiều 3). Khi mọi người đều được đo bằng cùng một thước đo và nghi ngờ sự vượt trội lẫn nhau, quan hệ đồng loại bị biến thành mạng lưới kiểm soát-giám sát thay vì hỗ trợ phát triển (chiều 4). Đây đồng thời là giải phóng ở tầng cộng đồng: tạo ra sự bình đẳng và gắn kết tập thể trong hoàn cảnh hậu chiến.',
+      llsxConflict: 'LLSX tâm lý-nhận thức (tư duy sáng tạo, động lực cá nhân, khả năng đổi mới) bị QHSX bình quân áp chế suốt 10–15 năm, kiến tạo ra "kiến trúc thượng tầng ý thức" mang tính thụ động — đây là minh chứng cho "tính độc lập tương đối của ý thức xã hội": QHSX thay đổi (1986) nhưng ý thức bình quân vẫn tồn tại nhiều thế hệ.',
       marxistConcept: 'Tồn tại xã hội quyết định ý thức xã hội (Gesellschaftliches Sein bestimmt das Bewusstsein)',
       textbookReference: 'Giáo trình tr.287–329 — Chủ nghĩa duy vật lịch sử, quan hệ cơ sở hạ tầng và kiến trúc thượng tầng',
       dialecticalLaw: 'Tồn tại xã hội (cơ sở kinh tế) quyết định ý thức xã hội (kiến trúc thượng tầng tâm lý)',
@@ -174,6 +187,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'BOTH',
+      alienationDimensions: [
+        'Tha hóa khỏi đồng loại',
+        'Tha hóa khỏi sản phẩm lao động văn hóa',
+      ],
+      alienationExplanation: 'Khi kinh tế thị trường thâm nhập, quan hệ cộng đồng từ "tình làng nghĩa xóm" chuyển thành quan hệ dịch vụ-hợp đồng — quan hệ đồng loại bị vật-hóa (chiều 4). Giá trị tinh thần và quan hệ gia đình — "sản phẩm văn hóa" được tích lũy qua nhiều thế hệ — bị hàng hóa hóa và quy đổi sang ngôn ngữ tiền tệ (chiều 1). Đây đồng thời là giải phóng thực sự khỏi nghèo đói vật chất và QHSX bao cấp kìm hãm.',
+      llsxConflict: 'LLSX thị trường đang giải phóng năng lực sản xuất và tích lũy tư bản với tốc độ chưa từng có, nhưng QHSX xã hội-văn hóa (chuẩn mực gia đình, cộng đồng, đạo đức nghề nghiệp) chưa thích nghi kịp — tạo khoảng trống giá trị mà kiến trúc thượng tầng pháp lý-đạo đức Việt Nam vẫn đang cố lấp đầy.',
       marxistConcept: 'Phủ định biện chứng (Aufhebung) — vừa xóa bỏ, vừa kế thừa, vừa nâng lên',
       textbookReference: 'Giáo trình tr.234–257 — Quy luật phủ định của phủ định, phát triển theo hình xoáy trôn ốc',
       dialecticalLaw: 'Phủ định của phủ định: phát triển không theo đường thẳng mà theo đường xoáy trôn ốc — cái mới phủ định cái cũ nhưng giữ lại những yếu tố hợp lý',
@@ -214,6 +233,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'THA_HOA',
+      alienationDimensions: [
+        'Tha hóa khỏi đồng loại',
+        'Tha hóa khỏi bản chất loài (Species-being)',
+      ],
+      alienationExplanation: 'Sùng bái hàng hóa biến quan hệ người-người thành quan hệ vật-vật thông qua tiền tệ — chiều tha hóa khỏi đồng loại trầm trọng nhất (chiều 4). Khi con người bắt đầu đo giá trị bản thân và người khác bằng tiêu dùng và thu nhập, "bản chất loài" — năng lực quan hệ tinh thần, đạo đức, tình người — bị quy về giá trị trao đổi vật chất (chiều 3).',
+      llsxConflict: 'LLSX hàng hóa-tiền tệ đang thống trị mọi lĩnh vực đời sống xã hội Việt Nam sau Đổi Mới, nhưng QHSX tinh thần-đạo đức (các giá trị văn hóa truyền thống, quan hệ phi thương mại) không có cơ chế bảo vệ — dẫn đến "thuần hóa" một chiều theo logic thị trường, tạo ra sùng bái hàng hóa quy mô xã hội.',
       marxistConcept: 'Sùng bái hàng hóa (Commodity Fetishism / Warenfetischismus) — Marx, Tư Bản Luận, Quyển 1, Chương 1',
       textbookReference: 'Giáo trình tr.457–464 — Học thuyết về tha hóa, sùng bái hàng hóa trong chủ nghĩa tư bản',
       dialecticalLaw: 'Tồn tại xã hội quyết định ý thức xã hội — cơ sở kinh tế hàng hóa kiến tạo ý thức sùng bái hàng hóa',
@@ -258,6 +283,13 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'THA_HOA',
+      alienationDimensions: [
+        'Tha hóa khỏi sản phẩm lao động',
+        'Tha hóa khỏi quá trình lao động',
+        'Tha hóa khỏi đồng loại',
+      ],
+      alienationExplanation: 'Nội dung người dùng tạo ra (bài viết, ảnh, phản ứng) thuộc về nền tảng — người lao động số không sở hữu "sản phẩm lao động" của mình (chiều 1). Hành vi cuộn feed, like, share là "lao động sự chú ý" bị thuật toán điều hướng không tự nguyện (chiều 2). Mọi quan hệ xã hội bị trung gian bởi nền tảng — ta chỉ thấy "hồ sơ" được thuật toán lọc, không thấy nhau thực sự (chiều 4).',
+      llsxConflict: 'LLSX số (dữ liệu hành vi, sự chú ý người dùng) được tạo ra bởi hàng trăm triệu người Việt Nam, nhưng QHSX nền tảng tập trung toàn bộ quyền sở hữu và khai thác vào tay một số tập đoàn công nghệ nước ngoài — đây là hình thức tập trung tư bản và bóc lột lao động tinh vi nhất trong lịch sử.',
       marxistConcept: 'Tha hóa số (Digital Alienation) — 4 chiều tha hóa của Marx áp dụng vào kinh tế nền tảng',
       textbookReference: 'Giáo trình tr.457–464 — Học thuyết tha hóa; tr.287–329 — LLSX, QHSX và kiến trúc thượng tầng',
       dialecticalLaw: 'Học thuyết tha hóa 4 chiều của Marx — tha hóa khỏi sản phẩm, quá trình, bản chất loài và đồng loại',
@@ -298,6 +330,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'THA_HOA',
+      alienationDimensions: [
+        'Tha hóa khỏi bản chất loài (Species-being)',
+        'Tha hóa khỏi đồng loại',
+      ],
+      alienationExplanation: 'Phản tư tự do — "lao động có ý thức và có mục đích" của con người — bị thay thế bởi phản ứng cảm xúc theo kích thích thuật toán thiết kế để tối đa hóa engagement (chiều 3). Bong bóng thông tin ngăn con người tiếp xúc với quan điểm đối lập, phá vỡ khả năng đối thoại thực sự và làm méo mó nhận thức về đồng loại (chiều 4).',
+      llsxConflict: 'LLSX thông tin (nhu cầu trao đổi tri thức, đối thoại dân chủ, nhận thức khách quan) xung đột với QHSX nền tảng quảng cáo (tối đa hóa engagement = tối đa doanh thu) — cấu trúc kinh tế buộc thuật toán phải ưu tiên phân cực cảm xúc hơn đối thoại lý trí.',
       marxistConcept: 'Ý thức xã hội lệch lạc (False Consciousness / Falsches Bewusstsein) và mâu thuẫn LLSX-QHSX thông tin',
       textbookReference: 'Giáo trình tr.287–329 — Tồn tại xã hội và ý thức xã hội; cơ sở hạ tầng quyết định kiến trúc thượng tầng',
       dialecticalLaw: 'Tồn tại xã hội quyết định ý thức xã hội — QHSX nền tảng số tất yếu kiến tạo kiến trúc thượng tầng ý thức phục vụ lợi ích tư bản',
@@ -342,6 +380,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'BOTH',
+      alienationDimensions: [
+        'Tha hóa khỏi quá trình lao động',
+        'Tha hóa khỏi bản chất loài (Species-being)',
+      ],
+      alienationExplanation: 'Khi AI thực hiện thay các quy trình từng là đặc quyền của con người (viết, phân tích, lập trình), người lao động bị đẩy ra khỏi quá trình mà họ từng là chủ thể (chiều 2). AI lần đầu tiên trong lịch sử đe dọa "lao động có ý thức và có mục đích" — đặc trưng loài người — không chỉ lao động tay chân, tạo ra khủng hoảng bản chất loài ở quy mô chưa từng có (chiều 3). Song song, AI cũng có thể là lực lượng giải phóng khỏi lao động lặp lại.',
+      llsxConflict: 'LLSX-AI (công nghệ nhận thức tự học, tự cải thiện theo hàm số mũ) đang phát triển vượt trước mọi tiên liệu, trong khi QHSX lao động (hợp đồng thuê nhân công, hệ thống bằng cấp, cấu trúc việc làm) vẫn là di sản của Cách mạng Công nghiệp lần 2 — khoảng cách này tạo ra bước nhảy xã hội không thể tránh, và Việt Nam đứng trước điểm nút lịch sử này.',
       marxistConcept: 'Mâu thuẫn LLSX-QHSX trong kỷ nguyên AI — LLSX nhận thức vs. QHSX tư bản tập trung',
       textbookReference: 'Giáo trình tr.287–329 — Quy luật LLSX-QHSX; tr.457–464 — Tha hóa và bản chất người',
       dialecticalLaw: 'Quan hệ sản xuất phải phù hợp với trình độ và tính chất của lực lượng sản xuất — khi không phù hợp tất yếu nảy sinh mâu thuẫn và bước nhảy',
@@ -382,6 +426,12 @@ export const FALLBACK_ANALYSIS = {
     ],
     philosophicalAnalysis: {
       phenomenon: 'THA_HOA',
+      alienationDimensions: [
+        'Tha hóa khỏi bản chất loài (Species-being)',
+        'Tha hóa khỏi quá trình lao động nhận thức',
+      ],
+      alienationExplanation: 'Đây là chiều tha hóa đặc thù nhất của kỷ nguyên AI: khi con người outsource "lao động tư duy" cho AI, họ mất đi quá trình làm cho mình trở thành NGƯỜI theo nghĩa triết học (chiều 3). Marx viết: con người khác con vật ở chỗ "xây lâu đài trong trí não" trước khi xây bằng gạch — AI đang thay thế đúng bước "xây trong trí não" này. Đồng thời, quá trình "vật lộn với bài toán" — nơi tư duy thực sự được hình thành — bị bỏ qua (chiều 2).',
+      llsxConflict: 'LLSX nhận thức (năng lực tư duy phân tích, phản biện, sáng tạo của con người) đang bị "outsource" sang LLSX-AI, nhưng QHSX giáo dục-lao động (hệ thống bằng cấp, đánh giá năng lực, kỳ vọng nghề nghiệp) chưa thích nghi — dẫn đến tình trạng nghịch lý: con người vừa mất năng lực vừa mất giá trị thị trường của năng lực đó.',
       marxistConcept: 'Tha hóa nhận thức (Cognitive Alienation) — mất "bản chất loài" (Species-being) ở tầng tư duy',
       textbookReference: 'Giáo trình tr.257–283 — Lý luận nhận thức biện chứng; tr.457–464 — Bản chất người và tha hóa',
       dialecticalLaw: 'Lý luận nhận thức biện chứng: thực tiễn → nhận thức → lý luận → trở lại thực tiễn (vòng xoáy đi lên)',
