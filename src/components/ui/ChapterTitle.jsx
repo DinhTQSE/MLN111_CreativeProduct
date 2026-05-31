@@ -8,7 +8,7 @@ export default function ChapterTitle({ index, period, label, title, subtitle, ac
         {index && (
           <span
             className="font-display font-black text-7xl leading-none select-none"
-            style={{ color: accent, opacity: 0.1 }}
+            style={{ color: accent, opacity: 0.14 }}
           >
             {index}
           </span>
@@ -17,7 +17,7 @@ export default function ChapterTitle({ index, period, label, title, subtitle, ac
           {period && (
             <p
               className="font-hand text-base"
-              style={{ color: accent, opacity: 0.8, display: 'inline-block', transform: 'rotate(-1deg)' }}
+              style={{ color: accent, opacity: 0.95, display: 'inline-block', transform: 'rotate(-1deg)' }}
             >
               {period}
             </p>
@@ -43,7 +43,7 @@ export default function ChapterTitle({ index, period, label, title, subtitle, ac
       {/* Phụ đề */}
       {subtitle && (
         <p className="font-body italic text-base md:text-lg leading-relaxed max-w-lg"
-           style={{ color: '#6b5040' }}>
+           style={{ color: '#523721' }}>
           {subtitle}
         </p>
       )}

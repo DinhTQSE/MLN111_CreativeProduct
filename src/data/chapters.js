@@ -35,8 +35,8 @@ export const CHAPTERS = [
     label: 'Đổi Mới',
     title: 'Bước Nhảy Tại Điểm Nút',
     subtitle: 'Giải phóng lao động cá nhân — Mầm mống tha hóa hàng hóa',
-    accent: '#8b6000',
-    accentGlow: 'rgba(139, 96, 0, 0.18)',
+    accent: '#6f4600',
+    accentGlow: 'rgba(111, 70, 0, 0.2)',
     bg: '#faf3e0',
     quote: {
       text: 'Chỉ trong cộng đồng [thực sự] mới có phương tiện để mỗi cá nhân phát triển tài năng của mình một cách toàn diện; chỉ trong cộng đồng mới có thể có tự do cá nhân.',

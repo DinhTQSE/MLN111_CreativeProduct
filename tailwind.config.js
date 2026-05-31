@@ -15,13 +15,13 @@ export default {
         'parch-2':  '#ede3ca',   /* giấy già hơn                        */
         'parch-3':  '#e4d9c0',   /* giấy đậm                            */
         ink:        '#1c0e06',   /* mực đen-nâu                         */
-        'ink-mid':  '#3a2510',   /* mực trung                           */
-        'ink-lite':  '#6b5040',  /* mực nhạt                            */
+        'ink-mid':  '#34200f',   /* mực trung                           */
+        'ink-lite':  '#523721',  /* mực nhạt                            */
 
         /* Chapter accent — đậm để đọc được trên nền sáng */
         'ch1':      '#8b1a1a',   /* đỏ mực Soviet                       */
         'ch1-bg':   '#f5e8e2',   /* nền chương 1 — kem đỏ nhạt          */
-        'ch2':      '#8b6000',   /* vàng/hổ phách đậm                   */
+        'ch2':      '#6f4600',   /* vàng/hổ phách đậm                   */
         'ch2-bg':   '#faf3e0',   /* nền chương 2 — giấy vàng            */
         'ch3':      '#0d3d5c',   /* xanh mực hải quân                   */
         'ch3-bg':   '#e8f0f5',   /* nền chương 3 — xanh nhạt            */

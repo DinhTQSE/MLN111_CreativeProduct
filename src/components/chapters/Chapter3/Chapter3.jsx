@@ -5,11 +5,8 @@ import { getChapterById } from '../../../data/chapters'
 import ChapterTitle from '../../ui/ChapterTitle'
 import QuoteBlock from '../../ui/QuoteBlock'
 import NeonCard from '../../ui/NeonCard'
-<<<<<<< HEAD
 import IllustrationChapter3 from '../../ui/illustrations/IllustrationChapter3'
 import ConceptImage from '../../ui/ConceptImage'
-=======
->>>>>>> 4f8b24fa4e17024048a5b6109884e88f77ab06e3
 import InteractivePoll from './InteractivePoll'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -44,7 +41,6 @@ export default function Chapter3() {
             <div className="animate-in"><ChapterTitle {...chapter}/></div>
 
             <div className="animate-in">
-<<<<<<< HEAD
               <ConceptImage
                 src="/images/chapter3_concept.png"
                 fallback={<IllustrationChapter3 accent={chapter.accent} className="w-full max-w-sm mx-auto lg:mx-0"/>}
@@ -58,8 +54,6 @@ export default function Chapter3() {
             </div>
 
             <div className="animate-in">
-=======
->>>>>>> 4f8b24fa4e17024048a5b6109884e88f77ab06e3
               <QuoteBlock text={chapter.quote.text} author={chapter.quote.author} accent={chapter.accent}/>
             </div>
 
