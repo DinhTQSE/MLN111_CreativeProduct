@@ -8,6 +8,9 @@
   --accent-muted:rgba(139, 96, 0, 0.18);
   --page-bg:     #f5edda;
   --ink:         #1c0e06;
+  --ink-mid:     #34200f;
+  --ink-lite:    #523721;
+  --paper-card:  rgba(247, 239, 220, 0.86);
 }
 
 /* ─── Base ─── */
@@ -19,7 +22,7 @@
     background-color: var(--page-bg);
     color: var(--ink);
     font-family: '"EB Garamond"', Georgia, serif;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.75;
     overflow-x: hidden;
     /* Grain giấy cũ tinh tế */
@@ -37,31 +40,43 @@
 @layer components {
 
   /* Fonts */
-  .font-display { font-family: '"Playfair Display"', Georgia, serif; }
-  .font-hand    { font-family: 'Caveat', cursive; }
-  .font-type    { font-family: '"Special Elite"', Courier, monospace; }
+  .font-display {
+    font-family: '"Playfair Display"', Georgia, serif;
+    letter-spacing: 0;
+    text-rendering: geometricPrecision;
+  }
+  .font-hand {
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+  }
+  .font-type {
+    font-family: '"Special Elite"', Courier, monospace;
+    text-rendering: geometricPrecision;
+  }
 
   /* ── Parchment card — giấy cũ với viền mực ── */
   .parchment-card {
-    background: rgba(240, 229, 206, 0.75);
-    border: 1px solid rgba(28, 14, 6, 0.14);
-    box-shadow: 2px 3px 0 rgba(28,14,6,0.08), 0 1px 8px rgba(28,14,6,0.04);
+    background: var(--paper-card);
+    border: 1px solid rgba(28, 14, 6, 0.18);
+    box-shadow: 2px 3px 0 rgba(28,14,6,0.1), 0 8px 22px rgba(28,14,6,0.055);
     transition: box-shadow 0.25s, transform 0.25s;
   }
   .parchment-card:hover {
-    box-shadow: 3px 5px 0 rgba(28,14,6,0.12), 0 2px 12px rgba(28,14,6,0.06);
+    box-shadow: 3px 5px 0 rgba(28,14,6,0.14), 0 12px 26px rgba(28,14,6,0.075);
   }
 
   /* ── Ink stamp label ── */
   .ink-stamp {
     font-family: '"Special Elite"', Courier, monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    padding: 0.22rem 0.65rem;
+    padding: 0.27rem 0.72rem;
     border: 1.5px solid currentColor;
+    background: rgba(255, 248, 236, 0.38);
     display: inline-block;
     position: relative;
+    box-shadow: 1px 1px 0 rgba(28, 14, 6, 0.08);
   }
   .ink-stamp::after {
     content: '';
@@ -90,9 +105,9 @@
   /* ── Annotation viết tay ── */
   .annotation {
     font-family: 'Caveat', cursive;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--accent);
-    opacity: 0.65;
+    opacity: 0.82;
     transform: rotate(-1.5deg);
     display: inline-block;
   }

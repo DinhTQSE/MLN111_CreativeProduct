@@ -31,7 +31,7 @@ export default function NavBar({ accent, activeChapter }) {
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-type text-xs tracking-[0.22em] uppercase transition-opacity hover:opacity-50"
+          className="font-type text-xs tracking-[0.16em] uppercase transition-opacity hover:opacity-65"
           style={{ color: accent || '#8b6000' }}
         >
           Mã nguồn — Xã hội
@@ -47,9 +47,9 @@ export default function NavBar({ accent, activeChapter }) {
                 onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
                 className="font-type text-xs tracking-wider uppercase transition-all duration-250 relative pb-0.5"
                 style={{
-                  color: isActive ? accent : '#6b5040',
-                  opacity: isActive ? 1 : 0.5,
-                  fontWeight: isActive ? 'bold' : 'normal',
+                  color: isActive ? accent : '#523721',
+                  opacity: isActive ? 1 : 0.72,
+                  fontWeight: isActive ? 700 : 600,
                 }}
               >
                 {item.label}
@@ -62,7 +62,7 @@ export default function NavBar({ accent, activeChapter }) {
         </nav>
 
         {/* Số trang */}
-        <span className="font-hand text-sm opacity-35 hidden md:block" style={{ color: accent }}>
+        <span className="font-hand text-base opacity-60 hidden md:block" style={{ color: accent }}>
           {(NAV_ITEMS.findIndex(n => n.id === activeChapter) + 1) || '—'} / {NAV_ITEMS.length}
         </span>
       </div>

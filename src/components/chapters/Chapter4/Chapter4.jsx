@@ -6,12 +6,9 @@ import ChapterTitle from '../../ui/ChapterTitle'
 import QuoteBlock from '../../ui/QuoteBlock'
 import NeonCard from '../../ui/NeonCard'
 import IllustrationChapter4 from '../../ui/illustrations/IllustrationChapter4'
-<<<<<<< HEAD
 import ConceptImage from '../../ui/ConceptImage'
-=======
 import CognitiveMirror from '../../interactive/CognitiveMirror'
 import { useHardStop } from '../../../hooks/useHardStop'
->>>>>>> 4f8b24fa4e17024048a5b6109884e88f77ab06e3
 
 gsap.registerPlugin(ScrollTrigger)
 const chapter = getChapterById('chapter4')

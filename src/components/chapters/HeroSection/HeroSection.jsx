@@ -116,7 +116,7 @@ export default function HeroSection({ accent }) {
           </div>
 
           <div className="hi">
-            <h1 className="font-display font-black text-6xl md:text-7xl lg:text-8xl leading-none text-ink tracking-tight">
+            <h1 className="font-display font-black text-6xl md:text-7xl lg:text-8xl leading-none text-ink">
               Vòng Lặp
             </h1>
             <h1
@@ -144,7 +144,7 @@ export default function HeroSection({ accent }) {
             <DialecticLoopBadge />
           </div>
 
-          <div className="hi font-type text-xs text-ink-lite space-y-1 tracking-wide opacity-60">
+          <div className="hi font-type text-xs text-ink-lite space-y-1 tracking-wide opacity-75">
             <p className="italic">"Mỗi lần con người tự do hơn, tại sao lại bị trói buộc theo cách mới?"</p>
             <p>1975 — 1986 — 2000 — 2020 — Nay</p>
           </div>

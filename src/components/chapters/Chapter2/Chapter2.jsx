@@ -62,8 +62,8 @@ export default function Chapter2() {
         <div className="animate-in flex justify-center mb-12">
           <div
             ref={stampRef}
-            className="font-type text-xs tracking-[0.28em] uppercase px-5 py-2.5 border-2 inline-flex items-center gap-2 relative"
-            style={{ borderColor: chapter.accent, color: chapter.accent, background: `${chapter.accent}08` }}
+            className="font-type text-xs tracking-[0.18em] uppercase px-5 py-2.5 border-2 inline-flex items-center gap-2 relative"
+            style={{ borderColor: chapter.accent, color: chapter.accent, background: `${chapter.accent}12` }}
           >
             <span>⚡</span>
             <span>Điểm Nút Lịch Sử — Đại Hội VI, 1986</span>
@@ -84,7 +84,7 @@ export default function Chapter2() {
             <div className="space-y-2 animate-in">
               {chapter.theses.map((t, i) => (
                 <NeonCard key={i} accent={chapter.accent} className="px-5 py-3.5 flex gap-3 items-start">
-                  <span className="font-type text-xs shrink-0 mt-0.5 opacity-40"
+                  <span className="font-type text-xs shrink-0 mt-0.5 opacity-60"
                         style={{ color: chapter.accent }}>[{String(i+1).padStart(2,'0')}]</span>
                   <p className="font-body text-sm leading-relaxed text-ink-mid">{t}</p>
                 </NeonCard>
@@ -92,7 +92,7 @@ export default function Chapter2() {
             </div>
 
             <NeonCard accent={chapter.accent} className="p-5 animate-in">
-              <p className="font-type text-[9px] uppercase tracking-widest opacity-35 mb-2"
+              <p className="font-type text-[9px] uppercase tracking-wider opacity-60 mb-2"
                  style={{ color: chapter.accent }}>// Phân tích Mác-xít //</p>
               <p className="font-body italic text-sm text-ink-mid leading-relaxed">
                 Hàng hóa không đơn thuần là vật dụng — nó trở thành{' '}
@@ -106,14 +106,14 @@ export default function Chapter2() {
           <div className="space-y-8">
             <div className="animate-in">
               <IllustrationChapter2 accent={chapter.accent} className="w-full max-w-md mx-auto"/>
-              <p className="font-hand text-sm text-center mt-2 opacity-45"
+              <p className="font-hand text-base text-center mt-2 opacity-75"
                  style={{ color: chapter.accent, transform: 'rotate(1deg)' }}>
                 Chợ tự do — TP. Hồ Chí Minh, 1988
               </p>
             </div>
 
             <div className="animate-in">
-              <p className="font-hand text-base opacity-55 mb-4"
+              <p className="font-hand text-lg opacity-80 mb-4"
                  style={{ color: chapter.accent, transform: 'rotate(-1deg)' }}>
                 Hàng hóa sùng bái (Commodity Fetishism)
               </p>
@@ -124,14 +124,14 @@ export default function Chapter2() {
                       <p className="font-display font-bold text-sm text-ink mb-3 leading-snug">{item.name}</p>
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2">
-                          <span className="font-type text-[8px] uppercase opacity-35">Trước</span>
-                          <span className="font-type text-xs line-through opacity-40 text-ink-mid">{item.before}</span>
+                          <span className="font-type text-[9px] uppercase opacity-55">Trước</span>
+                          <span className="font-type text-xs line-through opacity-55 text-ink-mid">{item.before}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-type text-[8px] uppercase opacity-35">Sau</span>
+                          <span className="font-type text-[9px] uppercase opacity-55">Sau</span>
                           <span className="font-type text-sm font-bold" style={{ color: chapter.accent }}>{item.after}</span>
                         </div>
-                        <p className="font-hand text-xs opacity-35" style={{ color: chapter.accent }}>{item.year}</p>
+                        <p className="font-hand text-sm opacity-65" style={{ color: chapter.accent }}>{item.year}</p>
                       </div>
                     </NeonCard>
                   </div>
