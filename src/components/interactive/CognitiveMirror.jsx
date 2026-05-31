@@ -5,30 +5,31 @@ import { analyzeViewpoint } from '../../services/openaiService'
 import { VIEWPOINTS } from '../../data/viewpoints'
 
 /* ─── Màu accent cho selection interface (trên parchment) ─── */
-const SEL_ACCENT       = '#0891b2'   // cyan — nút, viền, stamp
-const SEL_ACCENT_DARK  = '#0c4a6e'   // dark cyan — text chính trên parchment
+const SEL_ACCENT       = '#3d1f6b'
+const SEL_ACCENT_DARK  = '#271044'
+const SEL_ACCENT_SOFT  = 'rgba(61, 31, 107, 0.08)'
 
 /* ─── Màu dark-terminal cho result area ─── */
 const T = {
-  bg:      '#05101a',   // wrapper ngoài
-  panel:   '#081828',   // header panel
-  border:  '#1a5f8a',   // viền chung
+  bg:      '#fff8ec',   // wrapper ngoài
+  panel:   '#f3e8d5',   // header panel
+  border:  '#3d1f6b',   // viền chung
 
-  text:     '#dff0fb',  // body text (blue-tinted white — dễ đọc trên nền tối)
-  textSub:  '#7ecef5',  // secondary text
-  textMuted:'#4a9dbf',  // muted
+  text:     '#1c0e06',
+  textSub:  '#523721',
+  textMuted:'#6b5040',
 
   /* Cột ủng hộ — xanh lá */
-  green:       '#34d399',  // label
-  greenBorder: '#065f46',  // viền card
-  greenBg:     '#052e1a',  // nền card
-  greenText:   '#a7f3d0',  // body trong card
+  green:       '#166534',
+  greenBorder: '#2f855a',
+  greenBg:     '#eef7ed',
+  greenText:   '#173b22',
 
   /* Cột phản bác — đỏ */
-  red:        '#f87171',   // label
-  redBorder:  '#7f1d1d',   // viền card
-  redBg:      '#200808',   // nền card
-  redText:    '#fecaca',   // body trong card
+  red:        '#8b1a1a',
+  redBorder:  '#b65454',
+  redBg:      '#fff0ed',
+  redText:    '#4a1414',
 }
 
 /* ─── Màu theo hiện tượng cho cột triết học ─── */
@@ -36,35 +37,35 @@ const PHEN = {
   THA_HOA: {
     label:    'THA HÓA',
     icon:     '⛓',
-    bg:       '#180820',
-    border:   '#c026d3',
-    glow:     'rgba(192,38,211,0.18)',
-    tag:      '#e879f9',
-    tagBg:    'rgba(192,38,211,0.15)',
-    text:     '#f5d0fe',
-    accent:   '#d946ef',
+    bg:       '#fff8ec',
+    border:   '#7a287e',
+    glow:     'rgba(122,40,126,0.10)',
+    tag:      '#4b1650',
+    tagBg:    'rgba(122,40,126,0.10)',
+    text:     '#271044',
+    accent:   '#5d1f61',
   },
   GIAI_PHONG: {
     label:    'GIẢI PHÓNG',
     icon:     '✊',
-    bg:       '#061a0c',
-    border:   '#16a34a',
-    glow:     'rgba(22,163,74,0.15)',
-    tag:      '#4ade80',
-    tagBg:    'rgba(22,163,74,0.15)',
-    text:     '#bbf7d0',
-    accent:   '#22c55e',
+    bg:       '#fff8ec',
+    border:   '#166534',
+    glow:     'rgba(22,101,52,0.10)',
+    tag:      '#14532d',
+    tagBg:    'rgba(22,101,52,0.10)',
+    text:     '#173b22',
+    accent:   '#166534',
   },
   BOTH: {
     label:    'BIỆN CHỨNG HAI CHIỀU',
     icon:     '⟳',
-    bg:       '#0d0a1e',
-    border:   '#7c3aed',
-    glow:     'rgba(124,58,237,0.18)',
-    tag:      '#a78bfa',
-    tagBg:    'rgba(124,58,237,0.15)',
-    text:     '#ede9fe',
-    accent:   '#8b5cf6',
+    bg:       '#fff8ec',
+    border:   '#3d1f6b',
+    glow:     'rgba(61,31,107,0.10)',
+    tag:      '#271044',
+    tagBg:    'rgba(61,31,107,0.10)',
+    text:     '#271044',
+    accent:   '#3d1f6b',
   },
 }
 
@@ -170,6 +171,54 @@ function PulseDots({ color }) {
 /* ═══════════════════════════════════════════════════
    Evidence card — green / red theme
 ═══════════════════════════════════════════════════ */
+function WorkflowSteps({ active = 1 }) {
+  const steps = [
+    { n: '01', label: 'Chọn luận điểm' },
+    { n: '02', label: 'AI phân tích' },
+    { n: '03', label: 'Đối chiếu biện chứng' },
+  ]
+
+  return (
+    <div
+      className="grid grid-cols-1 md:grid-cols-3 border"
+      style={{ borderColor: `${SEL_ACCENT}26`, background: 'rgba(255,248,236,0.52)' }}
+    >
+      {steps.map((s, i) => {
+        const index = i + 1
+        const isActive = index === active
+        const isDone = index < active
+        return (
+          <div
+            key={s.n}
+            className="px-4 py-3 flex items-center gap-3 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0"
+            style={{
+              borderColor: `${SEL_ACCENT}18`,
+              background: isActive ? SEL_ACCENT_SOFT : 'transparent',
+            }}
+          >
+            <span
+              className="font-type text-[10px] w-8 h-8 border flex items-center justify-center shrink-0"
+              style={{
+                borderColor: isDone || isActive ? SEL_ACCENT : `${SEL_ACCENT}26`,
+                color: isDone || isActive ? SEL_ACCENT : '#8a765c',
+                background: isDone ? `${SEL_ACCENT}14` : 'transparent',
+              }}
+            >
+              {isDone ? '✓' : s.n}
+            </span>
+            <span
+              className="font-type text-[10px] tracking-wider uppercase"
+              style={{ color: isActive ? SEL_ACCENT_DARK : '#6b5040' }}
+            >
+              {s.label}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 function EvidenceCard({ item, type }) {
   const isSupport  = type === 'support'
   const label      = isSupport ? T.green       : T.red
@@ -180,12 +229,12 @@ function EvidenceCard({ item, type }) {
 
   return (
     <div
-      className="rounded p-4 space-y-3"
+      className="rounded-sm p-4 space-y-3"
       style={{
         background:   bg,
         border:       `1px solid ${border}`,
         borderLeft:   `4px solid ${label}`,
-        boxShadow:    `0 2px 10px rgba(0,0,0,0.45)`,
+        boxShadow:    '1px 2px 0 rgba(28,14,6,0.08)',
       }}
     >
       <p className="font-body text-sm leading-relaxed" style={{ color: bodyText }}>
@@ -235,22 +284,22 @@ function PhiloPanel({ analysis }) {
 
       {/* ── Phenomenon badge — large & prominent ── */}
       <div
-        className="flex items-center gap-3 px-4 py-3.5 rounded"
+        className="flex items-center gap-3 px-4 py-3.5 rounded-sm"
         style={{
           background:  p.bg,
           border:      `2px solid ${p.border}`,
-          boxShadow:   `0 0 20px ${p.glow}`,
+          boxShadow:   '1px 2px 0 rgba(28,14,6,0.08)',
         }}
       >
-        <span className="text-2xl leading-none">{p.icon}</span>
+        <span className="text-2xl leading-none" style={{ color: p.border }}>{p.icon}</span>
         <div>
           <p
-            className="font-type text-[9px] tracking-widest uppercase mb-0.5"
-            style={{ color: p.accent, opacity: 0.75 }}
+            className="font-type text-[10px] tracking-widest uppercase mb-0.5"
+            style={{ color: p.accent }}
           >
             Hiện tượng triết học
           </p>
-          <p className="font-display font-black text-lg leading-tight" style={{ color: p.tag }}>
+          <p className="font-display font-black text-xl leading-tight" style={{ color: p.tag }}>
             {p.label}
           </p>
         </div>
@@ -260,7 +309,7 @@ function PhiloPanel({ analysis }) {
       {dims.length > 0 && (
         <div className="space-y-2">
           <p
-            className="font-type text-[9px] tracking-widest uppercase font-bold"
+            className="font-type text-[10px] tracking-widest uppercase font-bold"
             style={{ color: p.accent }}
           >
             Chiều tha hóa (Marx)
@@ -282,7 +331,7 @@ function PhiloPanel({ analysis }) {
           </div>
           {analysis.alienationExplanation && (
             <p
-              className="font-body text-[12px] leading-relaxed mt-2"
+              className="font-body text-sm leading-relaxed mt-2"
               style={{ color: T.text }}
             >
               {analysis.alienationExplanation}
@@ -294,19 +343,19 @@ function PhiloPanel({ analysis }) {
       {/* ── LLSX–QHSX conflict ── */}
       {analysis.llsxConflict && (
         <div
-          className="px-4 py-3 rounded"
+          className="px-4 py-3 rounded-sm"
           style={{
-            background: `${p.border}12`,
+            background: `${p.border}08`,
             borderLeft: `4px solid ${p.border}`,
           }}
         >
           <p
-            className="font-type text-[9px] tracking-widest uppercase font-bold mb-1.5"
+            className="font-type text-[10px] tracking-widest uppercase font-bold mb-1.5"
             style={{ color: p.accent }}
           >
             Mâu thuẫn LLSX — QHSX
           </p>
-          <p className="font-body text-[12px] leading-relaxed" style={{ color: p.text }}>
+          <p className="font-body text-sm leading-relaxed" style={{ color: T.text }}>
             {analysis.llsxConflict}
           </p>
         </div>
@@ -315,15 +364,15 @@ function PhiloPanel({ analysis }) {
       {/* ── Marxist concept ── */}
       <div className="space-y-0.5">
         <p
-          className="font-type text-[9px] tracking-widest uppercase font-bold"
-          style={{ color: p.accent, opacity: 0.8 }}
+          className="font-type text-[10px] tracking-widest uppercase font-bold"
+          style={{ color: p.accent }}
         >
           Khái niệm Mác-Lênin
         </p>
-        <p className="font-display font-bold text-sm leading-snug" style={{ color: T.text }}>
+        <p className="font-display font-bold text-base leading-snug" style={{ color: T.text }}>
           {analysis.marxistConcept}
         </p>
-        <p className="font-type text-[10px]" style={{ color: T.textMuted }}>
+        <p className="font-type text-[10px] leading-relaxed" style={{ color: T.textMuted }}>
           {analysis.textbookReference}
         </p>
       </div>
@@ -331,50 +380,50 @@ function PhiloPanel({ analysis }) {
       {/* ── Dialectical law ── */}
       <div className="space-y-0.5">
         <p
-          className="font-type text-[9px] tracking-widest uppercase font-bold"
-          style={{ color: p.accent, opacity: 0.8 }}
+          className="font-type text-[10px] tracking-widest uppercase font-bold"
+          style={{ color: p.accent }}
         >
           Quy luật biện chứng
         </p>
-        <p className="font-body italic text-sm font-semibold" style={{ color: T.textSub }}>
+        <p className="font-body italic text-sm font-semibold leading-relaxed" style={{ color: T.textSub }}>
           {analysis.dialecticalLaw}
         </p>
       </div>
 
       {/* ── Main analysis ── */}
       <div
-        className="px-4 py-4 rounded space-y-2"
+        className="px-4 py-4 rounded-sm space-y-2"
         style={{
           borderLeft: `4px solid ${p.border}`,
-          background: `${p.border}08`,
+          background: `${p.border}06`,
         }}
       >
         <p
-          className="font-type text-[9px] tracking-widest uppercase font-bold"
+          className="font-type text-[10px] tracking-widest uppercase font-bold"
           style={{ color: p.accent }}
         >
           Phân tích sâu
         </p>
-        <p className="font-body text-[13px] leading-relaxed" style={{ color: T.text }}>
+        <p className="font-body text-sm leading-relaxed" style={{ color: T.text }}>
           {analysis.analysis}
         </p>
       </div>
 
       {/* ── Dialectical conclusion ── */}
       <div
-        className="rounded p-4"
+        className="rounded-sm p-4"
         style={{
-          background: `${p.border}18`,
-          border:     `2px solid ${p.border}`,
+          background: `${p.border}08`,
+          border:     `2px solid ${p.border}70`,
         }}
       >
         <p
-          className="font-type text-[9px] tracking-widest uppercase font-bold mb-2"
+          className="font-type text-[10px] tracking-widest uppercase font-bold mb-2"
           style={{ color: p.accent }}
         >
           Kết luận biện chứng
         </p>
-        <p className="font-body italic text-[13px] leading-relaxed" style={{ color: p.text }}>
+        <p className="font-body italic text-sm leading-relaxed" style={{ color: T.text }}>
           {analysis.conclusion}
         </p>
       </div>
@@ -391,7 +440,7 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
   useEffect(() => {
     if (resultRef.current) {
       gsap.from(resultRef.current.querySelectorAll('.reveal-col'), {
-        opacity: 0, y: 28, stagger: 0.18, duration: 0.75, ease: 'power2.out',
+        y: 18, stagger: 0.12, duration: 0.45, ease: 'power2.out', clearProps: 'transform',
       })
     }
   }, [])
@@ -425,22 +474,22 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
   return (
     <div
       ref={resultRef}
-      className="rounded overflow-hidden"
+      className="rounded-sm overflow-hidden"
       style={{
         background: T.bg,
-        border:     `1px solid ${T.border}50`,
-        boxShadow:  `0 0 40px rgba(0,0,0,0.5), 0 0 16px ${T.border}20`,
+        border:     `1px solid ${T.border}38`,
+        boxShadow:  '2px 3px 0 rgba(28,14,6,0.12), 0 16px 32px rgba(61,31,107,0.08)',
       }}
     >
       {/* ── Header ── */}
       <div
         className="px-6 py-4 border-b flex items-start justify-between gap-4"
-        style={{ borderColor: T.border + '40', background: T.panel }}
+        style={{ borderColor: `${T.border}24`, background: T.panel }}
       >
         <div className="space-y-1 flex-1 min-w-0">
           <p
             className="font-type text-[9px] tracking-widest uppercase font-bold"
-            style={{ color: SEL_ACCENT }}
+            style={{ color: SEL_ACCENT_DARK }}
           >
             Quan điểm đang phân tích
           </p>
@@ -451,7 +500,7 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
             {viewpointText}
           </p>
           {isFallback && (
-            <p className="font-type text-[10px] mt-1 font-semibold" style={{ color: '#fbbf24' }}>
+            <p className="font-type text-[10px] mt-1 font-semibold" style={{ color: '#7c4d10' }}>
               ★ Phân tích từ cơ sở dữ liệu chuẩn bị sẵn — chế độ offline
             </p>
           )}
@@ -461,8 +510,8 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
           className="shrink-0 font-type text-[10px] tracking-wider uppercase px-3 py-1.5 border-2 transition-opacity hover:opacity-75 whitespace-nowrap rounded-sm"
           style={{
             borderColor: SEL_ACCENT,
-            color:       T.text,
-            background:  `${SEL_ACCENT}25`,
+            color:       SEL_ACCENT_DARK,
+            background:  `${SEL_ACCENT}12`,
           }}
         >
           ↺ Chọn lại
@@ -470,11 +519,11 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
       </div>
 
       {/* ── 3 columns ── */}
-      <div className="p-5">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_1.15fr] gap-5">
+      <div className="p-4 md:p-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr_1fr] gap-5 items-start">
 
           {/* Column 1: Ủng hộ */}
-          <div className="reveal-col space-y-3">
+          <div className="reveal-col lg:order-2 space-y-3 opacity-100">
             <div
               className="flex items-center gap-2 pb-2.5 mb-1"
               style={{ borderBottom: `3px solid ${T.greenBorder}` }}
@@ -492,7 +541,7 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
           </div>
 
           {/* Column 2: Phản bác */}
-          <div className="reveal-col space-y-3">
+          <div className="reveal-col lg:order-3 space-y-3 opacity-100">
             <div
               className="flex items-center gap-2 pb-2.5 mb-1"
               style={{ borderBottom: `3px solid ${T.redBorder}` }}
@@ -511,11 +560,11 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
 
           {/* Column 3: Triết học — highlighted */}
           <div
-            className="reveal-col rounded p-4 space-y-3"
+            className="reveal-col lg:order-1 rounded-sm p-4 space-y-3 opacity-100"
             style={{
-              background:  `${phen.border}10`,
+              background:  'rgba(255,248,236,0.94)',
               border:      `2px solid ${phen.border}55`,
-              boxShadow:   `0 0 28px ${phen.glow}`,
+              boxShadow:   `2px 3px 0 rgba(28,14,6,0.10)`,
             }}
           >
             <div
@@ -524,7 +573,7 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
             >
               <span
                 className="font-type text-[10px] px-2 py-0.5 rounded-sm font-bold"
-                style={{ background: `${phen.border}30`, color: phen.tag }}
+                style={{ background: `${phen.border}12`, color: phen.tag }}
               >
                 🔭 GÓC NHÌN TRIẾT HỌC
               </span>
@@ -543,18 +592,18 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
         {/* ── Reflection question ── */}
         {result.reflectionQuestion && (
           <div
-            className="mt-6 rounded p-5"
+            className="mt-6 rounded-sm p-5"
             style={{
-              background:  '#0d0320',
-              border:      `2px solid #7c3aed`,
-              boxShadow:   '0 0 32px rgba(124,58,237,0.15)',
+              background:  '#f3e8d5',
+              border:      `2px solid ${SEL_ACCENT}45`,
+              boxShadow:   '2px 3px 0 rgba(28,14,6,0.08)',
             }}
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-lg">❓</span>
               <p
                 className="font-type text-[10px] tracking-widest uppercase font-bold"
-                style={{ color: '#8b5cf6' }}
+                style={{ color: SEL_ACCENT_DARK }}
               >
                 Câu hỏi phản tư — không có câu trả lời đúng/sai
               </p>
@@ -562,14 +611,14 @@ function AnalysisResult({ result, viewpointText, isFallback, onReset }) {
             <blockquote>
               <p
                 className="font-display font-bold italic text-xl leading-relaxed"
-                style={{ color: '#ede9fe' }}
+                style={{ color: T.text }}
               >
                 "{result.reflectionQuestion}"
               </p>
             </blockquote>
             <p
               className="font-body italic text-[11px] mt-4"
-              style={{ color: '#7c3aed', opacity: 0.8 }}
+              style={{ color: T.textMuted, opacity: 0.9 }}
             >
               Đây là thực hành lý luận nhận thức biện chứng: nhận thức bắt đầu từ sự tự tra vấn bản thân.
             </p>
@@ -603,6 +652,8 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
   const [loaderStep, setLoaderStep] = useState(0)
   const [customMode, setCustomMode] = useState(false)
   const viewpoints = VIEWPOINTS[chapter] || VIEWPOINTS.chapter4
+  const hasLiveApi = Boolean(import.meta.env.VITE_OPENAI_API_KEY)
+  const activeWorkflowStep = analysisResult ? 3 : isLoading ? 2 : 1
 
   const handleAnalyze = async () => {
     const text = getActiveText()
@@ -652,9 +703,9 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {/* ── Title ── */}
-      <div className="text-center space-y-2">
+      <div className="text-center space-y-3">
         <span
           className="ink-stamp block mb-4"
           style={{ color: SEL_ACCENT, borderColor: SEL_ACCENT }}
@@ -671,8 +722,29 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
       </div>
 
       {/* ── Selection interface ── */}
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <span
+          className="font-type text-[10px] tracking-widest uppercase px-2.5 py-1 border rounded-sm"
+          style={{
+            color: hasLiveApi ? SEL_ACCENT_DARK : '#7c4d10',
+            borderColor: hasLiveApi ? `${SEL_ACCENT}45` : '#b8842f66',
+            background: hasLiveApi ? `${SEL_ACCENT}10` : '#f3d59a33',
+          }}
+        >
+          {hasLiveApi ? 'OpenAI live' : 'Fallback offline'}
+        </span>
+        <span
+          className="font-type text-[10px] tracking-widest uppercase px-2.5 py-1 border rounded-sm"
+          style={{ color: '#5a4030', borderColor: `${SEL_ACCENT}24`, background: 'rgba(255,248,236,0.5)' }}
+        >
+          3 bước đối chiếu
+        </span>
+      </div>
+
+      <WorkflowSteps active={activeWorkflowStep} />
+
       {!analysisResult && !isLoading && (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div>
             <p
               className="font-type text-[10px] tracking-widest uppercase font-semibold mb-3"
@@ -680,22 +752,43 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
             >
               Chọn quan điểm để phân tích
             </p>
-            <div className="grid grid-cols-1 gap-2">
-              {viewpoints.map((vp) => {
+            <div className="grid grid-cols-1 gap-3">
+              {viewpoints.map((vp, index) => {
                 const isSelected = selectedViewpoint?.id === vp.id
                 return (
                   <button
                     key={vp.id}
                     onClick={() => { selectViewpoint(vp); setCustomMode(false) }}
-                    className="w-full text-left px-4 py-3.5 border-2 transition-all duration-200 rounded-sm"
+                    className="group w-full text-left px-5 py-4 border-2 transition-all duration-200 rounded-sm hover:-translate-y-0.5"
                     style={{
-                      borderColor: isSelected ? SEL_ACCENT        : `${SEL_ACCENT}35`,
-                      background:  isSelected ? `${SEL_ACCENT}18` : `${SEL_ACCENT}05`,
+                      borderColor: isSelected ? SEL_ACCENT        : `${SEL_ACCENT}28`,
+                      background:  isSelected ? `${SEL_ACCENT}14` : 'rgba(255,248,236,0.54)',
                       color:       isSelected ? SEL_ACCENT_DARK   : '#2a1a0e',
+                      boxShadow:   isSelected ? '2px 3px 0 rgba(61,31,107,0.18)' : '1px 2px 0 rgba(28,14,6,0.06)',
                     }}
                   >
-                    <span className="font-body text-sm italic leading-relaxed">
+                    <span className="flex items-start gap-4">
+                      <span
+                        className="font-type text-[10px] w-8 h-8 border flex items-center justify-center shrink-0 mt-0.5"
+                        style={{
+                          borderColor: isSelected ? SEL_ACCENT : `${SEL_ACCENT}28`,
+                          color: isSelected ? SEL_ACCENT : '#8a765c',
+                          background: isSelected ? `${SEL_ACCENT}12` : 'transparent',
+                        }}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="flex-1 min-w-0">
+                        <span
+                          className="font-type text-[9px] tracking-widest uppercase block mb-1"
+                          style={{ color: isSelected ? SEL_ACCENT : '#7a5a3a' }}
+                        >
+                          Luận điểm mẫu
+                        </span>
+                        <span className="font-body text-sm italic leading-relaxed block">
                       {vp.text}
+                        </span>
+                      </span>
                     </span>
                     {isSelected && (
                       <span
@@ -721,7 +814,10 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
               {customMode ? '↑ Thu lại' : '+ Nhập quan điểm của bạn'}
             </button>
             {customMode && (
-              <div className="mt-3 space-y-2">
+              <div
+                className="mt-3 space-y-2 border rounded-sm p-3"
+                style={{ borderColor: `${SEL_ACCENT}28`, background: 'rgba(255,248,236,0.5)' }}
+              >
                 <textarea
                   value={customViewpoint}
                   onChange={e => setCustomViewpoint(e.target.value)}
@@ -746,7 +842,7 @@ export default function CognitiveMirror({ chapter = 'chapter4' }) {
           {(selectedViewpoint || customViewpoint.trim().length > 10) && (
             <button
               onClick={handleAnalyze}
-              className="w-full py-4 font-type text-sm tracking-[0.2em] uppercase border-2 transition-all duration-200 hover:opacity-90 font-bold rounded-sm"
+              className="w-full py-4 font-type text-sm tracking-[0.2em] uppercase border-2 transition-all duration-200 hover:opacity-90 font-bold rounded-sm shadow-[2px_3px_0_rgba(28,14,6,0.14)]"
               style={{
                 borderColor: SEL_ACCENT,
                 color:       '#fff8ec',
