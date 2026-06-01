@@ -17,6 +17,10 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: auto; overflow-x: hidden; }
+  html.is-snap-scrolling,
+  html.is-snap-scrolling body {
+    overscroll-behavior: none;
+  }
 
   body {
     background-color: var(--page-bg);
@@ -161,7 +165,7 @@
 .chapter-img {
   display: block;
   width: 100%;
-  max-width: 28rem;
+  max-width: 100%;
   border-radius: 2px;
   mix-blend-mode: multiply;   /* nền sáng: ảnh trắng sẽ trong suốt */
   transition: opacity 0.4s ease;

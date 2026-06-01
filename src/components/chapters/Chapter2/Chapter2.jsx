@@ -1,44 +1,58 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getChapterById } from '../../../data/chapters'
-import ChapterTitle from '../../ui/ChapterTitle'
-import QuoteBlock from '../../ui/QuoteBlock'
+import ArchivePhoto from '../../ui/ArchivePhoto'
 import NeonCard from '../../ui/NeonCard'
-import BreakthroughBurst from './BreakthroughBurst'
-import IllustrationChapter2 from '../../ui/illustrations/IllustrationChapter2'
+import doiMoiTrain from '../../../../images/doi_moi_1.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 const chapter = getChapterById('chapter2')
 
-const COMMODITIES = [
-  { name: 'Honda Dream',     before: '3 chỉ vàng',  after: '18 triệu đ',  year: '1990' },
-  { name: 'Gạo tẻ (1 kg)',  before: '200 đ',        after: '2.000 đ',     year: '1987–90' },
-  { name: 'USD (1 đô)',      before: '375 đ',         after: '11.000 đ',    year: '1986–95' },
-  { name: 'Nhà Hà Nội',     before: '5 lượng',       after: '40 lượng',    year: '1986–00' },
+const COMMODITY_NODES = [
+  'Tiền tệ',
+  'Hàng hóa',
+  'Giá đất',
+  'Xe máy',
+  'Thị trường',
+  'Lợi nhuận',
+  'Tự do làm giàu',
+  'Cạnh tranh',
+]
+
+const PATCH_STEPS = [
+  ['01', 'Cơ chế cũ', 'Kế hoạch hóa tập trung không còn phù hợp với lực lượng sản xuất đang muốn bung ra.'],
+  ['02', 'Đại hội VI', 'Điểm nút chính trị: hợp thức hóa đổi mới, mở đường cho thị trường.'],
+  ['03', 'Thị trường', 'Năng lực cá nhân được giải phóng, nhưng quan hệ xã hội bắt đầu bị tiền tệ hóa.'],
 ]
 
 export default function Chapter2() {
   const sectionRef = useRef(null)
-  const burstRef   = useRef(null)
-  const stampRef   = useRef(null)
+  const nodesRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(stampRef.current, {
-        scale: 1.6, opacity: 0, rotate: -10, duration: 0.55, ease: 'back.out(1.7)',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 65%', toggleActions: 'play none none reverse' },
-      })
-
       gsap.from(sectionRef.current?.querySelectorAll('.animate-in'), {
-        opacity: 0, y: 40, stagger: 0.09, duration: 0.85, ease: 'power3.out',
+        opacity: 0,
+        y: 34,
+        stagger: 0.08,
+        duration: 0.75,
+        ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
       })
 
-      gsap.to(sectionRef.current?.querySelectorAll('.commodity-card'), {
-        y: -5, stagger: 0.4, duration: 2.5, repeat: -1, yoyo: true, ease: 'sine.inOut',
+      gsap.from(nodesRef.current?.querySelectorAll('.commodity-node'), {
+        opacity: 0,
+        scale: 0.4,
+        x: 0,
+        y: 0,
+        stagger: { each: 0.06, from: 'center' },
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+        scrollTrigger: { trigger: nodesRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
       })
     }, sectionRef)
+
     return () => ctx.revert()
   }, [])
 
@@ -46,97 +60,130 @@ export default function Chapter2() {
     <section
       id="chapter2"
       ref={sectionRef}
-      className="chapter-section relative px-6 md:px-14 py-24"
+      className="chapter-section relative px-6 md:px-10 2xl:px-14 py-16 md:py-20"
       style={{ background: chapter.bg, minHeight: '100vh' }}
     >
-      {/* Crosshatch */}
-      <div className="absolute inset-0 crosshatch-bg pointer-events-none opacity-40" aria-hidden="true"/>
+      <div className="absolute inset-0 crosshatch-bg pointer-events-none opacity-35" aria-hidden="true" />
 
-      {/* Burst canvas */}
-      <div ref={burstRef} className="absolute inset-0 overflow-hidden pointer-events-none z-10" aria-hidden="true">
-        <BreakthroughBurst containerRef={burstRef}/>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Stamp */}
-        <div className="animate-in flex justify-center mb-12">
+      <div className="max-w-[1600px] mx-auto relative z-10">
+        <div className="animate-in flex justify-center mb-7">
           <div
-            ref={stampRef}
-            className="font-type text-xs tracking-[0.18em] uppercase px-5 py-2.5 border-2 inline-flex items-center gap-2 relative"
-            style={{ borderColor: chapter.accent, color: chapter.accent, background: `${chapter.accent}12` }}
+            className="font-type text-sm tracking-[0.2em] uppercase px-5 py-2.5 border-2 font-bold"
+            style={{ borderColor: chapter.accent, color: chapter.accent, background: `${chapter.accent}10` }}
           >
-            <span>⚡</span>
-            <span>Điểm Nút Lịch Sử — Đại Hội VI, 1986</span>
-            <span className="absolute -top-0.5 -left-0.5 w-2 h-2 border-t-2 border-l-2" style={{ borderColor: chapter.accent }}/>
-            <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 border-b-2 border-r-2" style={{ borderColor: chapter.accent }}/>
+            Bản vá lỗi lớn nhất // Đại hội VI, 1986
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* ── Trái ── */}
-          <div className="space-y-9">
-            <div className="animate-in"><ChapterTitle {...chapter}/></div>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 2xl:gap-14 items-start">
+          <div className="space-y-8">
+            <div className="animate-in">
+              <p className="font-type text-xs tracking-[0.28em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
+                Đổi Mới // 1986-2000
+              </p>
+              <h2 className="font-display font-black text-6xl md:text-7xl 2xl:text-[5.8rem] leading-[0.9] text-ink">
+                Bước nhảy
+                <span className="block italic" style={{ color: chapter.accent }}>
+                  tại điểm nút
+                </span>
+              </h2>
+            </div>
 
             <div className="animate-in">
-              <QuoteBlock text={chapter.quote.text} author={chapter.quote.author} accent={chapter.accent}/>
+              <ArchivePhoto
+                src={doiMoiTrain}
+                caption="Đổi Mới như một đoàn tàu rời khỏi cơ chế cũ"
+                subCaption="1986"
+                accent={chapter.accent}
+              />
             </div>
 
-            <div className="space-y-2 animate-in">
-              {chapter.theses.map((t, i) => (
-                <NeonCard key={i} accent={chapter.accent} className="px-5 py-3.5 flex gap-3 items-start">
-                  <span className="font-type text-xs shrink-0 mt-0.5 opacity-60"
-                        style={{ color: chapter.accent }}>[{String(i+1).padStart(2,'0')}]</span>
-                  <p className="font-body text-sm leading-relaxed text-ink-mid">{t}</p>
-                </NeonCard>
-              ))}
-            </div>
-
-            <NeonCard accent={chapter.accent} className="p-5 animate-in">
-              <p className="font-type text-[9px] uppercase tracking-wider opacity-60 mb-2"
-                 style={{ color: chapter.accent }}>// Phân tích Mác-xít //</p>
-              <p className="font-body italic text-sm text-ink-mid leading-relaxed">
-                Hàng hóa không đơn thuần là vật dụng — nó trở thành{' '}
-                <em style={{ color: chapter.accent }}>quan hệ xã hội được vật chất hóa</em>.
-                Người lao động không còn nhìn thấy mình trong sản phẩm mình tạo ra.
+            <NeonCard accent={chapter.accent} className="animate-in p-6">
+              <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
+                Speaker beat
+              </p>
+              <p className="font-display font-bold italic text-2xl 2xl:text-3xl leading-snug text-ink">
+                “Bạn có tài, bạn được quyền làm giàu. Nhưng đồng tiền cũng bắt đầu trở thành thước đo vạn vật.”
               </p>
             </NeonCard>
           </div>
 
-          {/* ── Phải ── */}
-          <div className="space-y-8">
-            <div className="animate-in">
-              <IllustrationChapter2 accent={chapter.accent} className="w-full max-w-md mx-auto"/>
-              <p className="font-hand text-base text-center mt-2 opacity-75"
-                 style={{ color: chapter.accent, transform: 'rotate(1deg)' }}>
-                Chợ tự do — TP. Hồ Chí Minh, 1988
-              </p>
-            </div>
-
-            <div className="animate-in">
-              <p className="font-hand text-lg opacity-80 mb-4"
-                 style={{ color: chapter.accent, transform: 'rotate(-1deg)' }}>
-                Hàng hóa sùng bái (Commodity Fetishism)
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                {COMMODITIES.map((item, i) => (
-                  <div key={i} className="commodity-card">
-                    <NeonCard accent={chapter.accent} className="p-4 h-full">
-                      <p className="font-display font-bold text-sm text-ink mb-3 leading-snug">{item.name}</p>
-                      <div className="space-y-1.5">
-                        <div className="flex items-center gap-2">
-                          <span className="font-type text-[9px] uppercase opacity-55">Trước</span>
-                          <span className="font-type text-xs line-through opacity-55 text-ink-mid">{item.before}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-type text-[9px] uppercase opacity-55">Sau</span>
-                          <span className="font-type text-sm font-bold" style={{ color: chapter.accent }}>{item.after}</span>
-                        </div>
-                        <p className="font-hand text-sm opacity-65" style={{ color: chapter.accent }}>{item.year}</p>
-                      </div>
-                    </NeonCard>
-                  </div>
+          <div className="space-y-5">
+            <div ref={nodesRef} className="animate-in relative min-h-[430px] border-2 overflow-hidden shadow-[2px_3px_0_rgba(111,70,0,0.10)]" style={{ borderColor: `${chapter.accent}55`, background: `${chapter.accent}08` }}>
+              <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+                {Array.from({ length: 10 }, (_, i) => (
+                  <div
+                    key={i}
+                    className="absolute h-px origin-left"
+                    style={{
+                      left: `${8 + i * 9}%`,
+                      top: `${16 + (i % 5) * 15}%`,
+                      width: `${42 + (i % 4) * 10}%`,
+                      transform: `rotate(${i % 2 === 0 ? -18 : 16}deg)`,
+                      background: `${chapter.accent}26`,
+                    }}
+                  />
                 ))}
               </div>
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="font-display font-black text-7xl md:text-8xl italic" style={{ color: `${chapter.accent}2f` }}>
+                  RESET
+                </div>
+              </div>
+
+              {COMMODITY_NODES.map((node, i) => {
+                const positions = [
+                  [12, 22], [33, 13], [62, 18], [78, 34],
+                  [18, 62], [43, 48], [64, 68], [82, 76],
+                ]
+                const [left, top] = positions[i]
+                return (
+                  <div
+                    key={node}
+                    className="commodity-node absolute px-5 py-3 border-2 font-type text-sm tracking-wider uppercase bg-[#fff8ec] font-bold shadow-[2px_3px_0_rgba(111,70,0,0.12)]"
+                    style={{ left: `${left}%`, top: `${top}%`, borderColor: chapter.accent, color: chapter.accent }}
+                  >
+                    {node}
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-3">
+              {PATCH_STEPS.map(([n, title, body]) => (
+                <NeonCard key={n} accent={chapter.accent} className="p-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span
+                      className="w-9 h-9 border-2 flex items-center justify-center font-type text-xs font-bold shrink-0"
+                      style={{ borderColor: chapter.accent, color: chapter.accent }}
+                    >
+                      {n}
+                    </span>
+                    <p className="font-display font-bold text-xl leading-none text-ink">{title}</p>
+                  </div>
+                  <p className="font-body italic text-base leading-snug text-ink-mid">{body}</p>
+                </NeonCard>
+              ))}
+            </div>
+
+            <div className="animate-in grid grid-cols-1 md:grid-cols-2 gap-4">
+              <NeonCard accent={chapter.accent} className="p-6">
+                <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold text-[#166534]">
+                  Giải phóng
+                </p>
+                <p className="font-body italic text-base 2xl:text-lg leading-relaxed text-ink-mid">
+                  Thị trường mở cửa, năng lực cá nhân được bung tỏa, lực lượng sản xuất thoát khỏi cơ chế phân phối cũ.
+                </p>
+              </NeonCard>
+              <NeonCard accent={chapter.accent} className="p-6">
+                <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold text-[#8b1a1a]">
+                  Tha hóa mới
+                </p>
+                <p className="font-body italic text-base 2xl:text-lg leading-relaxed text-ink-mid">
+                  Sùng bái hàng hóa: quan hệ người-người bị vật hóa thành quan hệ tiền, giá và lợi nhuận.
+                </p>
+              </NeonCard>
             </div>
           </div>
         </div>

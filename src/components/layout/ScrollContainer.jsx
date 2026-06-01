@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useChapterColor } from '../../hooks/useChapterColor'
 import NavBar from './NavBar'
 import ChapterProgress from './ChapterProgress'
+import SmoothSnapScroll from './SmoothSnapScroll'
 
 import HeroSection from '../chapters/HeroSection/HeroSection'
 import Chapter1 from '../chapters/Chapter1/Chapter1'
@@ -21,6 +22,7 @@ const SECTION_CHAPTERS = [
   { id: 'chapter2',  chapterId: 'chapter2' },
   { id: 'chapter3',  chapterId: 'chapter3' },
   { id: 'chapter4',  chapterId: 'chapter4' },
+  { id: 'ai-feature',chapterId: 'chapter4' },
   { id: 'conclusion',chapterId: 'conclusion' },
 ]
 
@@ -47,6 +49,7 @@ export default function ScrollContainer() {
 
   return (
     <>
+      <SmoothSnapScroll />
       <NavBar accent={accent} activeChapter={activeChapter} />
       <ChapterProgress activeChapter={activeChapter} />
 

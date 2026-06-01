@@ -26,22 +26,22 @@ export default function RationGridViz({ accent }) {
   }, [])
 
   return (
-    <div ref={gridRef} className="w-full max-w-xs mx-auto">
-      <p className="font-type text-[9px] tracking-[0.22em] uppercase opacity-45 mb-3 text-center"
+    <div ref={gridRef} className="w-full max-w-sm 2xl:max-w-md mx-auto">
+      <p className="font-type text-xs tracking-[0.22em] uppercase font-bold mb-3 text-center"
          style={{ color: accent }}>Hệ thống phân phối tem phiếu</p>
 
       <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${GRID}, 1fr)` }}>
         {Array.from({ length: GRID * GRID }, (_, i) => (
           <div key={i} className="ration-cell aspect-square border flex items-center justify-center transition-colors"
                style={{ borderColor: 'rgba(139,26,26,0.15)', backgroundColor: 'rgba(139,26,26,0.05)' }}>
-            <span className="font-type text-[5px] select-none opacity-25" style={{ color: accent }}>
+            <span className="font-type text-[8px] select-none font-bold" style={{ color: `${accent}aa` }}>
               {String(i+1).padStart(2,'0')}
             </span>
           </div>
         ))}
       </div>
 
-      <p className="font-hand text-sm text-center mt-3 opacity-40"
+      <p className="font-hand text-lg text-center mt-3 font-bold"
          style={{ color: accent, transform: 'rotate(-0.5deg)' }}>
         {GRID*GRID} ô phân phối — tất cả bị khoá
       </p>

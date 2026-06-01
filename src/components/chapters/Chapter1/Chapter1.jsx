@@ -1,47 +1,71 @@
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getChapterById } from '../../../data/chapters'
-import ChapterTitle from '../../ui/ChapterTitle'
-import QuoteBlock from '../../ui/QuoteBlock'
+import ArchivePhoto from '../../ui/ArchivePhoto'
 import NeonCard from '../../ui/NeonCard'
 import RationGridViz from './RationGridViz'
-import PressureBar from './PressureBar'
-import IllustrationChapter1 from '../../ui/illustrations/IllustrationChapter1'
+import baoCapStreet from '../../../../images/bao_cap_1.jpg'
+import baoCapColor from '../../../../images/bao_cap_2.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 const chapter = getChapterById('chapter1')
 
+function InflationCounter({ accent }) {
+  const numberRef = useRef(null)
+
+  useEffect(() => {
+    const target = { value: 0 }
+    const tween = gsap.to(target, {
+      value: 774,
+      duration: 1.4,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: numberRef.current,
+        start: 'top 78%',
+        toggleActions: 'play none none reverse',
+      },
+      onUpdate: () => {
+        if (numberRef.current) numberRef.current.textContent = Math.round(target.value)
+      },
+    })
+
+    return () => tween.kill()
+  }, [])
+
+  return (
+    <div className="border-2 p-6" style={{ borderColor: `${accent}55`, background: `${accent}08` }}>
+      <p className="font-type text-xs tracking-[0.24em] uppercase mb-2 font-bold" style={{ color: accent }}>
+        GSAP counter // Lạm phát 1986
+      </p>
+      <div className="flex items-end gap-2">
+        <span ref={numberRef} className="font-display font-black text-8xl 2xl:text-[7rem] leading-none" style={{ color: accent }}>
+          0
+        </span>
+        <span className="font-display font-black text-5xl leading-none pb-2" style={{ color: accent }}>%</span>
+      </div>
+      <p className="font-body italic text-base 2xl:text-lg text-ink-mid mt-3">
+        Mâu thuẫn tích lũy đến điểm nút: hệ thống bắt buộc phải reset.
+      </p>
+    </div>
+  )
+}
+
 export default function Chapter1() {
   const sectionRef = useRef(null)
-  const pinnedRef  = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        pin: pinnedRef.current,
-        start: 'top top',
-        end: '+=280%',
-        scrub: true,
-        onUpdate(self) {
-          if (self.progress > 0.88) {
-            const shake = (Math.random() - 0.5) * (self.progress - 0.88) * 6
-            gsap.set(pinnedRef.current, { x: shake, y: shake * 0.4 })
-          } else {
-            gsap.set(pinnedRef.current, { x: 0, y: 0 })
-          }
-        },
-      })
-
-      gsap.from(pinnedRef.current?.querySelectorAll('.animate-in'), {
-        opacity: 0, y: 30, stagger: 0.1, duration: 0.85, ease: 'power2.out',
-        scrollTrigger: {
-          trigger: sectionRef.current, start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
+      gsap.from(sectionRef.current?.querySelectorAll('.animate-in'), {
+        opacity: 0,
+        y: 34,
+        stagger: 0.09,
+        duration: 0.75,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 68%', toggleActions: 'play none none reverse' },
       })
     }, sectionRef)
+
     return () => ctx.revert()
   }, [])
 
@@ -49,79 +73,74 @@ export default function Chapter1() {
     <section
       id="chapter1"
       ref={sectionRef}
-      style={{ minHeight: '380vh', background: chapter.bg }}
+      className="chapter-section relative px-6 md:px-10 2xl:px-14 py-16 md:py-20"
+      style={{ background: chapter.bg, minHeight: '100vh' }}
     >
-      {/* Crosshatch mờ */}
-      <div className="absolute inset-0 crosshatch-bg pointer-events-none opacity-50" aria-hidden="true"/>
+      <div className="absolute inset-0 crosshatch-bg pointer-events-none opacity-45" aria-hidden="true" />
 
-      {/* Đường kẻ ngang trang sách */}
-      {Array.from({ length: 30 }, (_, i) => (
-        <div key={i} className="absolute left-0 right-0 h-px opacity-[0.04]"
-             style={{ top: `${(i + 1) * 38}px`, background: chapter.accent }}/>
-      ))}
-
-      <div ref={pinnedRef} className="min-h-screen flex items-center px-6 md:px-14 py-24">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-
-          {/* ── Trái ── */}
+      <div className="max-w-[1600px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-10 2xl:gap-14 items-start">
           <div className="space-y-8">
             <div className="animate-in">
-              <ChapterTitle {...chapter}/>
+              <span className="ink-stamp mb-5 !text-xs !tracking-[0.22em] !px-3 !py-1.5 font-bold" style={{ color: chapter.accent, borderColor: chapter.accent }}>
+                02-05 phút // Nút thắt hệ thống
+              </span>
+              <p className="font-type text-xs tracking-[0.28em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
+                Bao cấp // 1975-1986
+              </p>
+              <h2 className="font-display font-black text-6xl md:text-7xl 2xl:text-[5.8rem] leading-[0.9] text-ink">
+                Một mã nguồn
+                <span className="block italic" style={{ color: chapter.accent }}>
+                  khóa mọi động lực
+                </span>
+              </h2>
             </div>
 
-            <div className="animate-in">
-              <PressureBar containerRef={sectionRef}/>
-            </div>
-
-            <div className="animate-in">
-              <QuoteBlock text={chapter.quote.text} author={chapter.quote.author} accent={chapter.accent}/>
-            </div>
-
-            <div className="space-y-2 animate-in">
-              {chapter.theses.map((t, i) => (
-                <NeonCard key={i} accent={chapter.accent} className="px-5 py-3.5 flex gap-3 items-start">
-                  <span className="font-type text-xs shrink-0 mt-0.5 opacity-40"
-                        style={{ color: chapter.accent }}>
-                    [{String(i+1).padStart(2,'0')}]
-                  </span>
-                  <p className="font-body text-sm leading-relaxed text-ink-mid">{t}</p>
+            <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-3">
+              {[
+                ['INPUT', 'Kế hoạch hóa tập trung tuyệt đối'],
+                ['BUG', 'Bình quân chủ nghĩa triệt tiêu sáng tạo'],
+                ['OUTPUT', 'Con người thành bánh răng thụ động'],
+              ].map(([k, v]) => (
+                <NeonCard key={k} accent={chapter.accent} className="p-5 2xl:p-6">
+                  <p className="font-type text-xs tracking-[0.2em] uppercase font-bold" style={{ color: chapter.accent }}>
+                    {k}
+                  </p>
+                  <p className="font-body italic text-base 2xl:text-lg leading-snug text-ink-mid mt-2">{v}</p>
                 </NeonCard>
               ))}
             </div>
+
+            <div className="animate-in grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-5 items-start">
+              <InflationCounter accent={chapter.accent} />
+              <RationGridViz accent={chapter.accent} />
+            </div>
           </div>
 
-          {/* ── Phải ── */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="animate-in">
-              <IllustrationChapter1 accent={chapter.accent} className="w-full max-w-sm mx-auto"/>
-              <p className="font-hand text-sm text-center mt-2 opacity-50"
-                 style={{ color: chapter.accent, transform: 'rotate(-1deg)' }}>
-                Hàng người xếp hàng — Hà Nội, 1980
-              </p>
+              <ArchivePhoto
+                src={baoCapStreet}
+                caption="Đô thị thời bao cấp: đời sống vận hành trong thiếu hụt và phân phối"
+                subCaption="Archive 01"
+                accent={chapter.accent}
+              />
             </div>
-
-            <div className="animate-in">
-              <RationGridViz accent={chapter.accent}/>
-            </div>
-
-            <div className="animate-in">
-              <NeonCard accent={chapter.accent} className="p-5 font-type text-xs space-y-2.5">
-                <p className="opacity-40 uppercase tracking-widest text-[9px] mb-3 pb-2 border-b"
-                   style={{ borderColor: `${chapter.accent}20`, color: chapter.accent }}>
-                  // Ghi chép kinh tế 1975–1986 //
+            <div className="animate-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+              <ArchivePhoto
+                src={baoCapColor}
+                caption="Không gian phố xá trước giai đoạn mở cửa mạnh"
+                subCaption="Archive 02"
+                accent={chapter.accent}
+                small
+              />
+              <NeonCard accent={chapter.accent} className="p-5">
+                <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
+                  Speaker beat
                 </p>
-                {[
-                  ['GDP tăng trưởng', '< 2% / năm', false],
-                  ['Lạm phát (1986)',  '774,7%',    true],
-                  ['Năng suất lao động','↓ 40% so 1975', false],
-                  ['Động lực cá nhân', 'CỰC THẤP',  true],
-                ].map(([k, v, danger]) => (
-                  <div key={k} className="flex justify-between items-center">
-                    <span className="text-ink-lite opacity-70">{k}</span>
-                    <span style={{ color: danger ? '#c0182a' : chapter.accent }}
-                          className="font-semibold">{v}</span>
-                  </div>
-                ))}
+                <p className="font-display font-bold italic text-xl leading-snug text-ink">
+                  “Tha hóa ở đây không đến từ máy móc, mà đến từ sự kìm hãm.”
+                </p>
               </NeonCard>
             </div>
           </div>

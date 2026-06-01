@@ -1,4 +1,5 @@
 import { CHAPTERS } from '../../data/chapters'
+import { snapToId } from './SmoothSnapScroll'
 
 export default function ChapterProgress({ activeChapter }) {
   return (
@@ -13,7 +14,7 @@ export default function ChapterProgress({ activeChapter }) {
         return (
           <button
             key={ch.id}
-            onClick={() => document.getElementById(ch.id)?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => snapToId(ch.id)}
             title={ch.label || ch.title}
             className="relative z-10 transition-all duration-300"
             aria-current={isActive ? 'step' : undefined}

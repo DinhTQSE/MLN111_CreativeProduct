@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import clsx from 'clsx'
+import { snapToId } from './SmoothSnapScroll'
 
 const NAV_ITEMS = [
   { id: 'chapter1', label: 'I. Bao Cấp' },
@@ -30,7 +31,7 @@ export default function NavBar({ accent, activeChapter }) {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => snapToId('hero')}
           className="font-type text-xs tracking-[0.16em] uppercase transition-opacity hover:opacity-65"
           style={{ color: accent || '#8b6000' }}
         >
@@ -44,7 +45,7 @@ export default function NavBar({ accent, activeChapter }) {
             return (
               <button
                 key={item.id}
-                onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => snapToId(item.id)}
                 className="font-type text-xs tracking-wider uppercase transition-all duration-250 relative pb-0.5"
                 style={{
                   color: isActive ? accent : '#523721',
