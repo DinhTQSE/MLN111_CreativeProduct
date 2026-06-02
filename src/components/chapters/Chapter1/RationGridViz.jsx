@@ -1,50 +1,13 @@
-import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import equalDistribution from '../../../../images/chapter1_equal_distribution.png'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const GRID = 6
-
-export default function RationGridViz({ accent }) {
-  const gridRef = useRef(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cells = gridRef.current?.querySelectorAll('.ration-cell')
-      if (!cells) return
-      gsap.fromTo(cells,
-        { backgroundColor: 'rgba(139,26,26,0.05)', borderColor: 'rgba(139,26,26,0.15)' },
-        {
-          backgroundColor: 'rgba(139,26,26,0.18)', borderColor: 'rgba(139,26,26,0.5)',
-          stagger: { each: 0.06, from: 'random' },
-          scrollTrigger: { trigger: gridRef.current, start: 'top 70%', end: 'bottom 20%', scrub: 1.5 },
-        }
-      )
-    }, gridRef)
-    return () => ctx.revert()
-  }, [])
-
+export default function RationGridViz() {
   return (
-    <div ref={gridRef} className="w-full max-w-sm 2xl:max-w-md mx-auto">
-      <p className="font-type text-xs tracking-[0.22em] uppercase font-bold mb-3 text-center"
-         style={{ color: accent }}>Hệ thống phân phối tem phiếu</p>
-
-      <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${GRID}, 1fr)` }}>
-        {Array.from({ length: GRID * GRID }, (_, i) => (
-          <div key={i} className="ration-cell aspect-square border flex items-center justify-center transition-colors"
-               style={{ borderColor: 'rgba(139,26,26,0.15)', backgroundColor: 'rgba(139,26,26,0.05)' }}>
-            <span className="font-type text-[8px] select-none font-bold" style={{ color: `${accent}aa` }}>
-              {String(i+1).padStart(2,'0')}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <p className="font-hand text-lg text-center mt-3 font-bold"
-         style={{ color: accent, transform: 'rotate(-0.5deg)' }}>
-        {GRID*GRID} ô phân phối — tất cả bị khoá
-      </p>
-    </div>
+    <figure className="w-full ambient-drift">
+      <img
+        src={equalDistribution}
+        alt="Minh hoa co che binh quan: dong gop khac nhau nhung muc huong nhu nhau"
+        className="w-full rounded-2xl shadow-[0_18px_44px_rgba(28,14,6,0.10)]"
+      />
+    </figure>
   )
 }

@@ -16,7 +16,7 @@ export const CHAPTERS = [
     subtitle: 'Ý thức xã hội thụ động — Lực lượng sản xuất bị kìm hãm',
     accent: '#8b1a1a',
     accentGlow: 'rgba(139, 26, 26, 0.15)',
-    bg: '#f5e8e2',
+    bg: '#f5edda',
     quote: {
       text: 'Trong sự sản xuất xã hội ra đời, con người tất nhiên phải bước vào những quan hệ nhất định, tất yếu, không tùy thuộc vào ý chí của họ.',
       author: 'Karl Marx, Lời tựa tác phẩm Góp phần phê phán Khoa Kinh tế Chính trị, 1859',
@@ -37,7 +37,7 @@ export const CHAPTERS = [
     subtitle: 'Giải phóng lao động cá nhân — Mầm mống tha hóa hàng hóa',
     accent: '#6f4600',
     accentGlow: 'rgba(111, 70, 0, 0.2)',
-    bg: '#faf3e0',
+    bg: '#f5edda',
     quote: {
       text: 'Chỉ trong cộng đồng [thực sự] mới có phương tiện để mỗi cá nhân phát triển tài năng của mình một cách toàn diện; chỉ trong cộng đồng mới có thể có tự do cá nhân.',
       author: 'Marx & Engels, Hệ tư tưởng Đức, 1845',
@@ -58,7 +58,7 @@ export const CHAPTERS = [
     subtitle: 'Giải phóng không gian — Tha hóa số (Digital Alienation)',
     accent: '#0d3d5c',
     accentGlow: 'rgba(13, 61, 92, 0.15)',
-    bg: '#e8f0f5',
+    bg: '#f5edda',
     quote: {
       text: 'Nếu bạn không trả tiền cho sản phẩm, thì bạn chính là sản phẩm.',
       author: 'Andrew Lewis, MetaFilter, 2010 — Ẩn dụ cho tha hóa kỹ thuật số',
@@ -79,7 +79,7 @@ export const CHAPTERS = [
     subtitle: 'Tự động hóa nhận thức — Đánh mất quyền tự quyết',
     accent: '#3d1f6b',
     accentGlow: 'rgba(61, 31, 107, 0.15)',
-    bg: '#ede8f5',
+    bg: '#f5edda',
     quote: {
       text: 'Con người là tổng hòa các mối quan hệ xã hội.',
       author: 'Karl Marx, Luận đề về Feuerbach, 1845 — Câu hỏi: Khi AI thay thế, "tổng hòa" đó còn lại gì?',
@@ -97,7 +97,7 @@ export const CHAPTERS = [
     title: 'Hệ Thống Hóa Quy Luật',
     accent: '#6b1212',
     accentGlow: 'rgba(107, 18, 18, 0.15)',
-    bg: '#f5ece8',
+    bg: '#f5edda',
   },
 ]
 

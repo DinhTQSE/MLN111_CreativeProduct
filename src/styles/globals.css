@@ -69,6 +69,54 @@
     box-shadow: 3px 5px 0 rgba(28,14,6,0.14), 0 12px 26px rgba(28,14,6,0.075);
   }
 
+  .editorial-note {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .editorial-photo {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .editorial-section {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(139,96,0,0.08), transparent 28%),
+      linear-gradient(180deg, #f5edda 0%, #f9f2df 100%);
+  }
+
+  .floating-cluster {
+    animation: textBreathe 7s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+  }
+
+  .ambient-drift {
+    animation: ambientDrift 6.4s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .ambient-drift-slow {
+    animation: ambientDriftSlow 8.8s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .text-breathe {
+    animation: textBreathe 6.8s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .section-waterline {
+    animation: waterlineSlide 16s linear infinite;
+  }
+
+  .editorial-rule {
+    width: 4.5rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+
   /* ── Ink stamp label ── */
   .ink-stamp {
     font-family: '"Special Elite"', Courier, monospace;
@@ -155,6 +203,35 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes ambientDrift {
+  0%   { transform: translate3d(0, 0, 0) rotate(-0.42deg); }
+  100% { transform: translate3d(0, -22px, 0) rotate(0.55deg); }
+}
+
+@keyframes ambientDriftSlow {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(0, -28px, 0) scale(1.026); }
+}
+
+@keyframes textBreathe {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(0, -12px, 0); }
+}
+
+@keyframes waterlineSlide {
+  from { background-position: 0 0; }
+  to   { background-position: 180px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-drift,
+  .ambient-drift-slow,
+  .text-breathe,
+  .section-waterline {
+    animation: none !important;
+  }
+}
+
 /* ─── Helpers ─── */
 .gsap-hidden { visibility: hidden; }
 .animate-in  { }   /* marker class for GSAP selectors */
@@ -166,7 +243,7 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  border-radius: 2px;
+  border-radius: 1rem;
   mix-blend-mode: multiply;   /* nền sáng: ảnh trắng sẽ trong suốt */
   transition: opacity 0.4s ease;
 }
@@ -181,6 +258,15 @@
   opacity: 0.78;
 }
 .chapter-img:hover { opacity: 1; }
+
+.parallax-media {
+  transform-style: preserve-3d;
+}
+
+.parallax-media img,
+.parallax-img {
+  will-change: transform;
+}
 
 /* ─── Crosshatch overlay per-section ── */
 .crosshatch-bg {

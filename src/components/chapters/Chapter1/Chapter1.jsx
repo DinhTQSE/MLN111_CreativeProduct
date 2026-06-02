@@ -11,6 +11,12 @@ import baoCapColor from '../../../../images/bao_cap_2.jpg'
 gsap.registerPlugin(ScrollTrigger)
 const chapter = getChapterById('chapter1')
 
+const DIAGNOSTICS = [
+  ['INPUT', 'Kế hoạch hóa tập trung tuyệt đối'],
+  ['BUG', 'Bình quân chủ nghĩa triệt tiêu sáng tạo'],
+  ['OUTPUT', 'Con người thành bánh răng thụ động'],
+]
+
 function InflationCounter({ accent }) {
   const numberRef = useRef(null)
 
@@ -34,9 +40,9 @@ function InflationCounter({ accent }) {
   }, [])
 
   return (
-    <div className="border-2 p-6" style={{ borderColor: `${accent}55`, background: `${accent}08` }}>
+    <div className="floating-cluster py-6 pl-6 border-l-2" style={{ borderColor: accent }}>
       <p className="font-type text-xs tracking-[0.24em] uppercase mb-2 font-bold" style={{ color: accent }}>
-        GSAP counter // Lạm phát 1986
+        Lạm phát 1986
       </p>
       <div className="flex items-end gap-2">
         <span ref={numberRef} className="font-display font-black text-8xl 2xl:text-[7rem] leading-none" style={{ color: accent }}>
@@ -64,6 +70,16 @@ export default function Chapter1() {
         ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 68%', toggleActions: 'play none none reverse' },
       })
+      gsap.to(sectionRef.current?.querySelectorAll('.parallax-media img, .parallax-img'), {
+        yPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+      })
     }, sectionRef)
 
     return () => ctx.revert()
@@ -79,13 +95,10 @@ export default function Chapter1() {
       <div className="absolute inset-0 crosshatch-bg pointer-events-none opacity-45" aria-hidden="true" />
 
       <div className="max-w-[1600px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-10 2xl:gap-14 items-start">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.06fr_0.94fr] gap-10 2xl:gap-14 items-start">
+          <div className="space-y-9">
             <div className="animate-in">
-              <span className="ink-stamp mb-5 !text-xs !tracking-[0.22em] !px-3 !py-1.5 font-bold" style={{ color: chapter.accent, borderColor: chapter.accent }}>
-                02-05 phút // Nút thắt hệ thống
-              </span>
-              <p className="font-type text-xs tracking-[0.28em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
+              <p className="font-type text-sm tracking-[0.28em] uppercase mb-4 font-bold" style={{ color: chapter.accent }}>
                 Bao cấp // 1975-1986
               </p>
               <h2 className="font-display font-black text-6xl md:text-7xl 2xl:text-[5.8rem] leading-[0.9] text-ink">
@@ -96,34 +109,31 @@ export default function Chapter1() {
               </h2>
             </div>
 
-            <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-3">
-              {[
-                ['INPUT', 'Kế hoạch hóa tập trung tuyệt đối'],
-                ['BUG', 'Bình quân chủ nghĩa triệt tiêu sáng tạo'],
-                ['OUTPUT', 'Con người thành bánh răng thụ động'],
-              ].map(([k, v]) => (
-                <NeonCard key={k} accent={chapter.accent} className="p-5 2xl:p-6">
-                  <p className="font-type text-xs tracking-[0.2em] uppercase font-bold" style={{ color: chapter.accent }}>
+            <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-8">
+              {DIAGNOSTICS.map(([k, v]) => (
+                <NeonCard key={k} accent={chapter.accent} className="floating-cluster min-h-[152px] py-6 pl-7 pr-4 2xl:py-7">
+                  <p className="font-type text-sm tracking-[0.2em] uppercase font-bold" style={{ color: chapter.accent }}>
                     {k}
                   </p>
-                  <p className="font-body italic text-base 2xl:text-lg leading-snug text-ink-mid mt-2">{v}</p>
+                  <p className="font-body italic text-xl 2xl:text-2xl leading-snug text-ink-mid mt-4">{v}</p>
                 </NeonCard>
               ))}
             </div>
 
-            <div className="animate-in grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-5 items-start">
+            <div className="animate-in grid grid-cols-1 xl:grid-cols-[0.62fr_1.38fr] gap-8 items-start">
               <InflationCounter accent={chapter.accent} />
               <RationGridViz accent={chapter.accent} />
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="animate-in">
               <ArchivePhoto
                 src={baoCapStreet}
                 caption="Đô thị thời bao cấp: đời sống vận hành trong thiếu hụt và phân phối"
                 subCaption="Archive 01"
                 accent={chapter.accent}
+                className="lg:translate-y-8"
               />
             </div>
             <div className="animate-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
@@ -133,8 +143,9 @@ export default function Chapter1() {
                 subCaption="Archive 02"
                 accent={chapter.accent}
                 small
+                className="lg:ml-16"
               />
-              <NeonCard accent={chapter.accent} className="p-5">
+              <NeonCard accent={chapter.accent} className="floating-cluster py-5 pl-6">
                 <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold" style={{ color: chapter.accent }}>
                   Speaker beat
                 </p>

@@ -51,6 +51,35 @@ export default function Chapter2() {
         ease: 'back.out(1.7)',
         scrollTrigger: { trigger: nodesRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
       })
+      gsap.to(nodesRef.current?.querySelectorAll('.commodity-node'), {
+        y: i => (i % 2 === 0 ? -20 : 18),
+        x: i => (i % 3 === 0 ? 17 : -14),
+        rotate: i => (i % 2 === 0 ? 1.25 : -1.25),
+        repeat: -1,
+        yoyo: true,
+        duration: i => 3.4 + i * 0.16,
+        ease: 'sine.inOut',
+        stagger: 0.08,
+      })
+      gsap.to(nodesRef.current?.querySelectorAll('.market-line'), {
+        x: i => (i % 2 === 0 ? 52 : -44),
+        opacity: 0.62,
+        repeat: -1,
+        yoyo: true,
+        duration: 4.7,
+        stagger: 0.16,
+        ease: 'sine.inOut',
+      })
+      gsap.to(sectionRef.current?.querySelectorAll('.parallax-media img, .parallax-img'), {
+        yPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+      })
     }, sectionRef)
 
     return () => ctx.revert()
@@ -109,12 +138,15 @@ export default function Chapter2() {
           </div>
 
           <div className="space-y-5">
-            <div ref={nodesRef} className="animate-in relative min-h-[430px] border-2 overflow-hidden shadow-[2px_3px_0_rgba(111,70,0,0.10)]" style={{ borderColor: `${chapter.accent}55`, background: `${chapter.accent}08` }}>
+            <div ref={nodesRef} className="animate-in relative min-h-[430px] overflow-hidden" style={{ background: `${chapter.accent}06` }}>
+              <p className="absolute left-6 top-6 z-10 font-type text-xs tracking-[0.22em] uppercase font-bold" style={{ color: chapter.accent }}>
+                Phá cơ chế cũ → thị trường bung ra
+              </p>
               <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                 {Array.from({ length: 10 }, (_, i) => (
                   <div
                     key={i}
-                    className="absolute h-px origin-left"
+                    className="market-line absolute h-px origin-left"
                     style={{
                       left: `${8 + i * 9}%`,
                       top: `${16 + (i % 5) * 15}%`,
@@ -127,8 +159,8 @@ export default function Chapter2() {
               </div>
 
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="font-display font-black text-7xl md:text-8xl italic" style={{ color: `${chapter.accent}2f` }}>
-                  RESET
+                <div className="font-display font-black text-6xl md:text-8xl italic" style={{ color: `${chapter.accent}30` }}>
+                  ĐỔI MỚI
                 </div>
               </div>
 
@@ -141,8 +173,8 @@ export default function Chapter2() {
                 return (
                   <div
                     key={node}
-                    className="commodity-node absolute px-5 py-3 border-2 font-type text-sm tracking-wider uppercase bg-[#fff8ec] font-bold shadow-[2px_3px_0_rgba(111,70,0,0.12)]"
-                    style={{ left: `${left}%`, top: `${top}%`, borderColor: chapter.accent, color: chapter.accent }}
+                    className="commodity-node absolute px-5 py-3 font-type text-sm tracking-wider uppercase bg-[#fff8ec]/75 font-bold"
+                    style={{ left: `${left}%`, top: `${top}%`, color: chapter.accent }}
                   >
                     {node}
                   </div>
@@ -152,11 +184,11 @@ export default function Chapter2() {
 
             <div className="animate-in grid grid-cols-1 md:grid-cols-3 gap-3">
               {PATCH_STEPS.map(([n, title, body]) => (
-                <NeonCard key={n} accent={chapter.accent} className="p-4">
+                <NeonCard key={n} accent={chapter.accent} className="floating-cluster py-3 pl-5">
                   <div className="flex items-center gap-3 mb-2">
                     <span
-                      className="w-9 h-9 border-2 flex items-center justify-center font-type text-xs font-bold shrink-0"
-                      style={{ borderColor: chapter.accent, color: chapter.accent }}
+                      className="w-9 h-9 flex items-center justify-center font-type text-xs font-bold shrink-0"
+                      style={{ color: chapter.accent }}
                     >
                       {n}
                     </span>
@@ -168,7 +200,7 @@ export default function Chapter2() {
             </div>
 
             <div className="animate-in grid grid-cols-1 md:grid-cols-2 gap-4">
-              <NeonCard accent={chapter.accent} className="p-6">
+              <NeonCard accent={chapter.accent} className="floating-cluster py-5 pl-6">
                 <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold text-[#166534]">
                   Giải phóng
                 </p>
@@ -176,7 +208,7 @@ export default function Chapter2() {
                   Thị trường mở cửa, năng lực cá nhân được bung tỏa, lực lượng sản xuất thoát khỏi cơ chế phân phối cũ.
                 </p>
               </NeonCard>
-              <NeonCard accent={chapter.accent} className="p-6">
+              <NeonCard accent={chapter.accent} className="floating-cluster py-5 pl-6">
                 <p className="font-type text-xs tracking-[0.22em] uppercase mb-3 font-bold text-[#8b1a1a]">
                   Tha hóa mới
                 </p>

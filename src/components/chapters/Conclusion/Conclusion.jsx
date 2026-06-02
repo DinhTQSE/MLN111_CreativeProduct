@@ -7,7 +7,7 @@ import { snapToId } from '../../layout/SmoothSnapScroll'
 gsap.registerPlugin(ScrollTrigger)
 
 const ACCENT = '#6b1212'
-const BG = '#f5ece8'
+const BG = '#f5edda'
 
 const MATRIX = [
   {
@@ -48,6 +48,14 @@ export default function Conclusion() {
         duration: 0.7,
         ease: 'power2.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
+      })
+      gsap.to(sectionRef.current?.querySelectorAll('.matrix-row'), {
+        x: i => (i % 2 === 0 ? 14 : -14),
+        repeat: -1,
+        yoyo: true,
+        duration: 5.4,
+        stagger: 0.12,
+        ease: 'sine.inOut',
       })
     }, sectionRef)
 
@@ -92,7 +100,7 @@ export default function Conclusion() {
               {MATRIX.map((row, i) => (
                 <div
                   key={row.stage}
-                  className="grid grid-cols-[0.75fr_1fr_1fr_1fr] gap-3 px-4 py-4 border-b last:border-b-0 items-start"
+                  className="matrix-row grid grid-cols-[0.75fr_1fr_1fr_1fr] gap-3 px-4 py-4 border-b last:border-b-0 items-start"
                   style={{ borderColor: `${ACCENT}12`, background: i % 2 === 0 ? 'transparent' : `${ACCENT}04` }}
                 >
                   <span className="font-type text-sm" style={{ color: ACCENT }}>{row.period}</span>

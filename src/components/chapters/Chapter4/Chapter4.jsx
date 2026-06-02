@@ -42,6 +42,24 @@ export default function Chapter4() {
         duration: 1.6,
         ease: 'sine.inOut',
       })
+      gsap.to(sectionRef.current?.querySelectorAll('.parallax-img'), {
+        yPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+      })
+      gsap.to(sectionRef.current?.querySelectorAll('.ai-row'), {
+        x: i => (i % 2 === 0 ? 16 : -16),
+        repeat: -1,
+        yoyo: true,
+        duration: 4.6,
+        stagger: 0.12,
+        ease: 'sine.inOut',
+      })
     }, sectionRef)
 
     return () => ctx.revert()
@@ -59,7 +77,7 @@ export default function Chapter4() {
       <div className="max-w-[1600px] mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 2xl:gap-14 items-start mb-16">
           <div className="space-y-8">
-            <div className="animate-in">
+            <div className="animate-in ambient-drift-slow">
               <p className="font-type text-[10px] tracking-[0.34em] uppercase mb-3" style={{ color: chapter.accent }}>
                 Kỷ nguyên AI // 2020-Nay
               </p>
@@ -74,7 +92,7 @@ export default function Chapter4() {
             <div className="animate-in">
               <ConceptImage
                 src={aiHands}
-                imgClass="chapter-img chapter4-img !w-auto max-w-full max-h-[360px] object-contain mx-auto lg:mx-0"
+                imgClass="chapter-img chapter4-img parallax-img !w-auto max-w-full max-h-[420px] object-contain mx-auto lg:mx-0"
                 alt="Tay người chạm tay máy"
               />
             </div>
@@ -90,10 +108,10 @@ export default function Chapter4() {
           </div>
 
           <div className="space-y-7">
-            <div className="animate-in neural-pulse border-2 p-6" style={{ borderColor: `${chapter.accent}45`, background: `${chapter.accent}06` }}>
+            <div className="animate-in neural-pulse ambient-drift p-0" style={{ background: 'transparent' }}>
               <ConceptImage
                 src={aiBody}
-                imgClass="chapter-img chapter4-img !w-auto max-w-full max-h-[540px] object-contain mx-auto"
+                imgClass="chapter-img chapter4-img parallax-img !w-auto max-w-full max-h-[620px] object-contain mx-auto"
                 alt="Con người và mạng neural hòa lẫn"
               />
               <p className="font-type text-[10px] tracking-[0.32em] uppercase text-center mt-4" style={{ color: chapter.accent }}>
@@ -112,7 +130,7 @@ export default function Chapter4() {
               {AI_TABLE.map((row, i) => (
                 <div
                   key={row.human}
-                  className="grid grid-cols-[1fr_1fr_1fr] gap-3 px-4 py-3 border-b last:border-b-0 items-center"
+                  className="ai-row grid grid-cols-[1fr_1fr_1fr] gap-3 px-4 py-3 border-b last:border-b-0 items-center"
                   style={{ borderColor: `${chapter.accent}12`, background: i % 2 === 0 ? 'transparent' : `${chapter.accent}04` }}
                 >
                   <span className="font-body italic text-base text-ink-mid">{row.human}</span>

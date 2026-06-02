@@ -12,10 +12,7 @@ const chapter = getChapterById('chapter3')
 
 function DataCommodityIllustration({ accent }) {
   return (
-    <figure
-      className="relative border-2 bg-[#fff8ec]/70 p-5 shadow-sm"
-      style={{ borderColor: `${accent}45` }}
-    >
+    <figure className="relative bg-[#fff8ec]/35 p-5 rounded-2xl ambient-drift">
       <div className="flex items-center justify-between gap-4 mb-4">
         <p className="font-type text-[12px] tracking-[0.24em] uppercase font-black" style={{ color: accent }}>
           Minh họa tha hóa số
@@ -28,7 +25,7 @@ function DataCommodityIllustration({ accent }) {
       <div className="grid grid-cols-1 md:grid-cols-[0.86fr_1fr] gap-5 items-center">
         <ConceptImage
           src={chapter3Barcode}
-          imgClass="chapter-img chapter3-img w-full max-h-[370px] object-contain mx-auto"
+          imgClass="chapter-img chapter3-img parallax-img w-full max-h-[370px] object-contain mx-auto"
           alt="Con người bị mã hóa thành hồ sơ dữ liệu"
         />
         <div className="space-y-4">
@@ -72,6 +69,16 @@ export default function Chapter3() {
         ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: 'play none none reverse' },
       })
+      gsap.to(sectionRef.current?.querySelectorAll('.parallax-media img, .parallax-img'), {
+        yPercent: -14,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8,
+        },
+      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -88,7 +95,7 @@ export default function Chapter3() {
       <div className="max-w-[1600px] mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr] gap-10 2xl:gap-14 items-start">
           <div className="space-y-8">
-            <div className="animate-in">
+            <div className="animate-in ambient-drift-slow">
               <p className="font-type text-[10px] tracking-[0.34em] uppercase mb-3" style={{ color: chapter.accent }}>
                 Kỷ nguyên số // 2000-2020
               </p>
@@ -100,10 +107,10 @@ export default function Chapter3() {
               </h2>
             </div>
 
-            <div className="animate-in">
+            <div className="animate-in ambient-drift">
               <ConceptImage
                 src={chapter3Data}
-                imgClass="chapter-img chapter3-img !w-auto mx-auto lg:mx-0 max-w-2xl max-h-[430px] object-contain"
+                imgClass="chapter-img chapter3-img parallax-img !w-auto mx-auto lg:mx-0 max-w-2xl max-h-[430px] object-contain"
                 alt="Người dùng biến thành luồng dữ liệu"
               />
             </div>

@@ -6,6 +6,7 @@ import { useChapterColor } from '../../hooks/useChapterColor'
 import NavBar from './NavBar'
 import ChapterProgress from './ChapterProgress'
 import SmoothSnapScroll from './SmoothSnapScroll'
+import TimelineThread from './TimelineThread'
 
 import HeroSection from '../chapters/HeroSection/HeroSection'
 import Chapter1 from '../chapters/Chapter1/Chapter1'
@@ -51,6 +52,7 @@ export default function ScrollContainer() {
     <>
       <SmoothSnapScroll />
       <NavBar accent={accent} activeChapter={activeChapter} />
+      <TimelineThread activeChapter={activeChapter} />
       <ChapterProgress activeChapter={activeChapter} />
 
       <main>
