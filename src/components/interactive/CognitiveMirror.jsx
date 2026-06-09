@@ -225,7 +225,6 @@ function EvidenceCard({ item, type }) {
   const border     = isSupport ? T.greenBorder : T.redBorder
   const bg         = isSupport ? T.greenBg     : T.redBg
   const bodyText   = isSupport ? T.greenText   : T.redText
-  const hasLink    = item.url && item.url !== '#'
 
   return (
     <div
@@ -240,7 +239,7 @@ function EvidenceCard({ item, type }) {
       <p className="font-body text-sm leading-relaxed" style={{ color: bodyText }}>
         {item.summary}
       </p>
-      <div className="flex items-center justify-between gap-2 flex-wrap pt-1">
+      <div className="flex items-center gap-2 flex-wrap pt-1">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: label }} />
           <span
@@ -253,17 +252,6 @@ function EvidenceCard({ item, type }) {
             · {item.year}
           </span>
         </div>
-        {hasLink && (
-          <a
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-type text-[10px] tracking-wider underline underline-offset-2 transition-opacity hover:opacity-60 flex items-center gap-1"
-            style={{ color: label }}
-          >
-            ↗ đọc bài gốc
-          </a>
-        )}
       </div>
     </div>
   )

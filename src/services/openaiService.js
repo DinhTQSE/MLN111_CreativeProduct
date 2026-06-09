@@ -64,16 +64,14 @@ JSON RESPONSE — CẤU TRÚC BẮT BUỘC CHÍNH XÁC
     {
       "summary": "2-3 câu: dẫn chứng cụ thể (số liệu, tên tác giả, sự kiện, năm) + giải thích ngắn tại sao bằng chứng này xác nhận hiện tượng tha hóa/giải phóng đã phân tích ở Tầng 1",
       "source": "Tên nguồn (VnExpress / Tuổi Trẻ / Nhân Dân / BBC Vietnamese / Tạp chí Cộng sản / ILO / World Bank / GSO / Tạp chí Xã hội học)",
-      "year": "Năm xuất bản",
-      "url": "URL bài báo cụ thể hoặc URL trang chủ nguồn nếu không nhớ URL bài"
+      "year": "Năm xuất bản"
     }
   ],
   "refutingEvidence": [
     {
       "summary": "2-3 câu: dẫn chứng phản bác cụ thể + giải thích tại sao điều này phức tạp hóa hoặc thách thức luận điểm — không phủ nhận hoàn toàn mà làm phong phú bức tranh biện chứng",
       "source": "Tên nguồn",
-      "year": "Năm",
-      "url": "URL"
+      "year": "Năm"
     }
   ],
   "reflectionQuestion": "Câu hỏi phản tư sắc bén nhất — không có câu trả lời đúng/sai — buộc người nghe phải đối mặt với mâu thuẫn trong chính tư duy và cuộc sống của họ"
