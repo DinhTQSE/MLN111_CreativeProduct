@@ -99,6 +99,14 @@ export const CHAPTERS = [
     accentGlow: 'rgba(107, 18, 18, 0.15)',
     bg: '#f5edda',
   },
+  {
+    id: 'appendix',
+    label: 'Phụ Lục',
+    title: 'Minh Bạch AI & Thông Tin Nhóm',
+    accent: '#6b1212',
+    accentGlow: 'rgba(107, 18, 18, 0.15)',
+    bg: '#f5edda',
+  },
 ]
 
 export const CHAPTER_IDS = CHAPTERS.map(c => c.id)

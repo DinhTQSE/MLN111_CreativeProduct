@@ -14,6 +14,7 @@ import Chapter2 from '../chapters/Chapter2/Chapter2'
 import Chapter3 from '../chapters/Chapter3/Chapter3'
 import Chapter4 from '../chapters/Chapter4/Chapter4'
 import Conclusion from '../chapters/Conclusion/Conclusion'
+import Appendix from '../chapters/Appendix/Appendix'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -25,6 +26,7 @@ const SECTION_CHAPTERS = [
   { id: 'chapter4',  chapterId: 'chapter4' },
   { id: 'ai-feature',chapterId: 'chapter4' },
   { id: 'conclusion',chapterId: 'conclusion' },
+  { id: 'appendix',  chapterId: 'appendix' },
 ]
 
 export default function ScrollContainer() {
@@ -62,6 +64,7 @@ export default function ScrollContainer() {
         <Chapter3 />
         <Chapter4 />
         <Conclusion />
+        <Appendix />
       </main>
     </>
   )

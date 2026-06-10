@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { id: 'chapter3', label: 'III. Kỷ Số' },
   { id: 'chapter4', label: 'IV. Kỷ AI' },
   { id: 'conclusion', label: 'Tổng Kết' },
+  { id: 'appendix', label: 'Phụ Lục' },
 ]
 
 export default function NavBar({ accent, activeChapter }) {
@@ -38,14 +39,14 @@ export default function NavBar({ accent, activeChapter }) {
           Mã nguồn — Xã hội
         </button>
 
-        <nav className="hidden md:flex items-center gap-9">
+        <nav className="hidden md:flex items-center gap-7">
           {NAV_ITEMS.map((item) => {
             const isActive = activeChapter === item.id
             return (
               <button
                 key={item.id}
                 onClick={() => snapToId(item.id)}
-                className="font-type text-[13px] tracking-wider uppercase transition-all duration-250 relative pb-0.5"
+                className="font-type text-[12px] lg:text-[13px] tracking-wider uppercase transition-all duration-250 relative pb-0.5 whitespace-nowrap"
                 style={{
                   color: isActive ? accent : '#523721',
                   opacity: isActive ? 1 : 0.78,

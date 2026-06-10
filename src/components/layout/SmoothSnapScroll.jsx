@@ -9,6 +9,7 @@ const SNAP_IDS = [
   'chapter4',
   'ai-feature',
   'conclusion',
+  'appendix',
 ]
 
 const DURATION = 950
